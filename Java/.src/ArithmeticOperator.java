@@ -1,4 +1,3 @@
-package Java.p04_Arithmetic_Operators;
 
 import java.util.Scanner;
 

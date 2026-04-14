@@ -1,4 +1,3 @@
-package Java.p03_Scanner_Input;
 
 import java.util.Scanner;
 

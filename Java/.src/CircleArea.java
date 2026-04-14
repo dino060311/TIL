@@ -1,4 +1,3 @@
-package Java.p02_Variables_DataTypes;
 
 public class CircleArea {
     public static void main(String[] args) {
