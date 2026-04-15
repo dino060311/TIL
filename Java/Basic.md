@@ -78,7 +78,7 @@
 
   ---
 
-## 📅 2026-04-15 (조건 연산자)
+## 📅 2026-04-15 (다양한 연산자 활용)
 
 ### ✅ 배운 내용
 `증감 연산자`는 피연산자 앞 또는 뒤에 붙어 값을 1증가시키거나 1 감소시킴.  
@@ -118,5 +118,5 @@ condition ? opr2 : opr3
 ### 💻 실습 코드
 - 실습 파일 바로가기:   
 [TernaryOperator.java](./.src/TernaryOperator.java)  
-[AssignmentIncDecOperator.java](./.src/AssignmentIncDecOperator)
+[AssignmentIncDecOperator.java](./.src/AssignmentIncDecOperator.java)
                        
