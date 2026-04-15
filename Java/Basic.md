@@ -75,3 +75,48 @@
 
 ### 💻 실습 코드
 - 실습 파일 바로가기: [ArithmeticOperator.java](./.src/ArithmeticOperator.java)
+
+  ---
+
+## 📅 2026-04-15 (조건 연산자)
+
+### ✅ 배운 내용
+`증감 연산자`는 피연산자 앞 또는 뒤에 붙어 값을 1증가시키거나 1 감소시킴.  
+| 연산자 | 내용 | 연산자 | 내용 |
+|:---:|:---:|:---:|:---:|
+| a++ | a를 1 증가하고 증가 전의 값 반환 | ++a | a를 1 증가하고 증가된 값 반환 |
+| a-- | a를 1 감소하고 감소 전의 값 반환 | --a | a를 감소하고 감소된 값 반환 |
+
+
+`대입 연산자`는 연산자의 오른쪽 식의 결과를 왼쪽에 있는 변수에 대입함.
+| 대입 연산자 | 내용 |
+|:---:|:---:|
+| a = b | b의 값을 a에 대입 |
+| a += b | a = a + b와 동일 |
+
+`비교 연산자`는 두 개의 피연산자를 비교하여 `true` 또는 `false`의 논리 값을 냄.
+| 연산자 | 내용 |
+|:---:|:---:|
+| a < b | a가 b보다 작으면 true |
+| a >= b | a가 b보다 크거나 같으면 true |
+| a == b | a와 b가 같으면 true |
+| a != b | a와 b가 같지 않으면 true |
+
+`논리 연산자`는 논리 값을 대상으로 AND, OR, XOR, NOT의 논리 연산을 하여 논리 값을 냄.
+| 연산자 | 내용 | 설명 |
+|:---:|:---:|:---|
+| a && b | AND | a와 b 모두 true여야 true |
+| a \|\| b | OR | a와 b 중 하나라도 true이면 true |
+| a ^ b | XOR | a와 b가 서로 다를 때 true |
+| !a | NOT | a가 true이면 false, false이면 true |
+
+`조건 연산자`는 조건문이 true이면 값이 opr2, false이면 값이 opr3가 됨.
+```bash
+condition ? opr2 : opr3
+```
+
+### 💻 실습 코드
+- 실습 파일 바로가기:   
+[TernaryOperator.java](./.src/TernaryOperator.java)  
+[AssignmentIncDecOperator.java](./.src/AssignmentIncDecOperator)
+                       
