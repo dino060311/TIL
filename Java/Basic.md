@@ -132,3 +132,51 @@ condition ? opr2 : opr3
 - 실습 파일 바로가기:  
   [TernaryOperator.java](./.src/TernaryOperator.java)  
   [AssignmentIncDecOperator.java](./.src/AssignmentIncDecOperator.java)
+
+  ***
+
+## 📅 2026-04-16 (if 문, if-else 문 활용)
+
+### ✅ 배운 내용
+
+조건문을 이용하면 조건의 참, 거짓에 따라 서로 다른 작업을 수행할 수 있음.
+
+**단순 if 문**
+
+- if 문의 조건식이 true이면 if 내부의 '실행 문장'이 실행되며, false이면 if 문을 벗어남.
+
+  if 문을 사용하여 정수 n이 짝수인지 판별하는 코드
+
+  ```bash
+  if(n % 2 == 0) {
+  System.out.println(n + "은 짝수입니다.");
+  }
+  ```
+
+  if의 실행문이 한 문장인 경우 {}를 생략해도 됨.
+
+  ```bash
+  if((score >= 80) && (score <= 89))
+    System.out.println("학점은 B입니다");
+  ```
+
+**if-else 문**
+
+- if-else 문은 if의 조건식이 참인 경우와 거짓인 경우에 각각 실행할 문장을 지시할 수 있음.
+- 조건식이 true이면 실행 문장1을 실행한 후 if-else 문을 벗어남.
+- 조건식이 false이면 실행 문장2를 실행한 후 if-else 문을 벗어남.
+
+  ```bash
+  if (n % 2 == 0) {
+   System.out.println(n + "은 짝수입니다.");
+  }
+  else {
+   System.out.println(n + "은 홀수입니다.");
+  }
+  ```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기:  
+  [SuccessOrFail.java](./.src/SuccessOrFail.java)  
+  [MultipleOfThree.java](./.src/MultipleOfThree.java)
