@@ -185,9 +185,19 @@ condition ? opr2 : opr3
 
 ## 📅 2026-04-17 (다중 if-else, 중첩 if-else 문 활용)
 
+### ✅ 배운 내용
+
+**다중 if-else 문**
+
+- 여러 개의 조건식을 순차적으로 검사하여 해당되는 블록 하나만 실행함.
+- 조건의 범위가 겹칠 때는 상위 조건부터 검사해야 로직이 꼬이지 않음
+
+**중첩 if-else 문**
+
+- if 문 안에 또 다른 if 문을 넣어 세부 조건을 판별함.
+
 ### 💻 실습 코드
 
 - 실습 파일 바로가기:  
   [Grading.java](./.src/Grading.java)  
   [NestedIf.java](./.src/NestedIf.java)
-
