@@ -180,3 +180,14 @@ condition ? opr2 : opr3
 - 실습 파일 바로가기:  
   [SuccessOrFail.java](./.src/SuccessOrFail.java)  
   [MultipleOfThree.java](./.src/MultipleOfThree.java)
+
+  ***
+
+## 📅 2026-04-17 (다중 if-else, 중첩 if-else 문 활용)
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기:  
+  [Grading.java](./.src/Grading.java)  
+  [NestedIf.java](./.src/NestedIf.java)
+
