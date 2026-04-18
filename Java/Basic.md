@@ -201,3 +201,53 @@ condition ? opr2 : opr3
 - 실습 파일 바로가기:  
   [Grading.java](./.src/Grading.java)  
   [NestedIf.java](./.src/NestedIf.java)
+
+  ***
+
+## 📅 2026-04-18 (switch 문)
+
+### ✅ 배운 내용
+
+- switch 문은 식을 먼저 계산하고 그 결과 값과 일치하는 case 문으로 분기함.
+
+- 실행할 문장이 동일한 여러 개의 case를 하나로 묶어 코드 중복을 줄일 수 있음.  
+  예: 에스프레소, 카푸치노, 카페라떼를 한꺼번에 처리하여 동일한 가격(3500) 할당.
+
+- case 문으로 분기하지 못할 경우 `default` 문으로 분기함.
+
+- `break`를 만나면 switch 문을 벗어남.  
+  case 문에 `break` 문이 없다면 `break` 문을 만날 때까지 아래의 case 문의 '실행 문장'으로 계속 실행함.
+
+- case 문의 값은 정수, 문자, 문자열 리터럴만 가능함.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [CoffePrice.java](./.src/CoffePrice.java)
+
+### ⚠️ Troubleshooting
+
+- **문제**: VS Code 터미널에서 한글(예: "에스프레소")을 입력했으나, switch 문이나 if 문 등 문자열 비교 로직에서 해당 값을 인식하지 못하고 default나 else로 빠지는 현상 발생.
+- **원인**: 윈도우 시스템의 기본 인코딩(MS949)과 VS Code/Java 소스 코드의 인코딩(UTF-8)이 서로 달라 한글 문자열이 깨지거나 다르게 인식됨.
+- **해결**: VS Code의 settings.json 설정을 통해 개발 환경 전체를 UTF-8로 통일함.
+
+1. 파일 인코딩: files.encoding: utf8 설정.
+
+2. 자바 실행 옵션: -Dfile.encoding=UTF-8 인자 추가.
+
+3. 터미널 설정: PowerShell 프로필에 chcp 65001(UTF-8 코드페이지 변경) 명령을 추가하여 입력/출력 인코딩을 동기화함.
+
+```bash
+{
+    "java.debug.settings.vmArgs": "-Dfile.encoding=UTF-8",
+    "[java]": {
+        "files.encoding": "utf8"
+    },
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": ["-NoExit", "-Command", "chcp 65001"]
+        }
+    }
+}
+```
