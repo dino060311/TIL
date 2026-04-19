@@ -1,14 +1,14 @@
-# 📚 나의 학습 기록 (TIL)
+# 🦖 TIL (Today I Learned)
+
 매일 배운 자바의 핵심 개념을 정리하고, 실습 코드를 기록하는 공간입니다.
 
 ---
 
-## 📖 학습 교재 (Reference)
-- 명품 JAVA 프로그래밍 (개정 5판) 황기태, 김효수 지음
+## 🛠️ Tech Stack & Environment
 
-## 📂 학습 목차
+- **Language**: Java 17 (LTS)
+- **IDE**: Visual Studio Code (VS Code)
+- **OS**: Windows 11
 
-### [Chapter 01. 자바 시작]
-
-### [Chapter 02. 자바 기본 프로그래밍]
-- [상세 일지 및 코드 확인](./Java/Basic.md)
+### ☕ [Java Programming](./Java/)
+- 자바 언어 공부📚
