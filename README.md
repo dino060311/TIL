@@ -11,4 +11,9 @@
 - **OS**: Windows 11
 
 ### ☕ [Java Programming](./Java/)
+
 - 자바 언어 공부📚
+
+### ⌨️ [VS Code Setup](./vscode/shortcuts.md)
+
+- vscode 단축키 정리
