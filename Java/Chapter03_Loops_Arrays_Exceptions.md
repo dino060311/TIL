@@ -133,3 +133,33 @@ for(int i = 0; i < 10; i++)
 - **내용**: 만약 System.out.println()을 내측 for 문 안에 넣었다면?
 - **결과**: 구구단이 가로로 예쁘게 정렬되지 않고 한 줄씩 세로로 길게 출력됨.
 - **배운 점**: 줄바꿈 문자의 위치가 출력 결과의 레이아웃을 결정하는 핵심 요소임을 깨달음.
+
+---
+
+## 📅 2026-04-23 (continue 문과 break 문)
+
+### ✅ 배운 내용
+
+반복문 내에 continue 문이나 break 문을 이용하면 반복의 흐름을 바꾸거나 반복에서 벗어나게 할 수 있음.
+
+**continue 문**
+
+- 반복문을 종료하지 않고 즉시 다음 반복으로 넘어가고자할 때 사용됨.
+- for 문: continue 문을 만나면 '반복 후 작업'으로 분기함.
+- while / do-while 문: 조건식을 검사하는 과정으로 분기함.
+
+**break 문**
+
+- break 문은 하나의 반복문만 벗어남.
+- 중첩 반복문의 경우 안쪽 반복문에서 break가 실행되어도 바깥 쪽 반복문 실행은 유지됨.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기:  
+  [ContinueExample.java](./.src/ContinueExample.java)  
+  [BreakExample.java](./.src/BreakExample.java)
+
+### ⚠️ Troubleshooting
+
+- **문제**: 출력 메시지에 "합음"이라는 오타 발생.
+- **해결**: System.out.println 내의 문자열을 "합은"으로 수정하여 다시 커밋함.
