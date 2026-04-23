@@ -13,7 +13,7 @@ public class ContinueExample {
             else
                 sum += n;
         }
-        System.out.println("양수의 합음 " + sum);
+        System.out.println("양수의 합은 " + sum);
         scanner.close();
     }
 }
