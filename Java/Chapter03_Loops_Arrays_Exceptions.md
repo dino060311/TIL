@@ -217,3 +217,26 @@ int intArray[] = new int[5];
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [ArrayAccess.java](./.src/ArrayAccess.java)
+
+---
+
+## 📅 2026-04-25 (배열의 크기, length 필드)
+
+### ✅ 배운 내용
+
+**배열의 length 필드**
+
+- 자바에서 배열은 객체로 다루며, 내부에 배열의 크기를 나타내는 `length` 필드가 존재함.
+- 배열의 크기가 변경되어도 `length` 필드를 사용하면 프로그램에서 배열의 크기를 따로 관리할 필요가 없음.
+- length 필드는 읽기 전용이라 값을 임의로 수정할 수 없음.
+
+배열의 크기는 다음과 같이 간단히 알아낼 수 있음.
+
+```java
+int intArray [] = new int[5];
+int size = intArray.length; //size는 5
+```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [ArrayLength.java](./.src/ArrayLength.java)
