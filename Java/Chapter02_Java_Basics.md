@@ -123,7 +123,7 @@
 
 `조건 연산자`는 조건문이 true이면 값이 opr2, false이면 값이 opr3가 됨.
 
-```bash
+```java
 condition ? opr2 : opr3
 ```
 
@@ -147,7 +147,7 @@ condition ? opr2 : opr3
 
   if 문을 사용하여 정수 n이 짝수인지 판별하는 코드
 
-  ```bash
+  ```java
   if(n % 2 == 0) {
   System.out.println(n + "은 짝수입니다.");
   }
@@ -155,7 +155,7 @@ condition ? opr2 : opr3
 
   if의 실행문이 한 문장인 경우 {}를 생략해도 됨.
 
-  ```bash
+  ```java
   if((score >= 80) && (score <= 89))
     System.out.println("학점은 B입니다");
   ```
@@ -166,7 +166,7 @@ condition ? opr2 : opr3
 - 조건식이 true이면 실행 문장1을 실행한 후 if-else 문을 벗어남.
 - 조건식이 false이면 실행 문장2를 실행한 후 if-else 문을 벗어남.
 
-  ```bash
+  ```java
   if (n % 2 == 0) {
    System.out.println(n + "은 짝수입니다.");
   }
@@ -236,7 +236,7 @@ condition ? opr2 : opr3
 
 3. 터미널 설정: PowerShell 프로필에 chcp 65001(UTF-8 코드페이지 변경) 명령을 추가하여 입력/출력 인코딩을 동기화함.
 
-```bash
+```java
 {
     "java.debug.settings.vmArgs": "-Dfile.encoding=UTF-8",
     "[java]": {
