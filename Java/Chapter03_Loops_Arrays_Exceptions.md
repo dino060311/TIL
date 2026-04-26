@@ -240,3 +240,28 @@ int size = intArray.length; //size는 5
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [ArrayLength.java](./.src/ArrayLength.java)
+
+---
+
+## 📅 2026-04-26 (배열과 for-each 문)
+
+### ✅ 배운 내용
+
+**for-each 문**
+
+- 배열이나 나열의 크기만큼 루프를 돌면서 각 `원소를 순차적으로 접근`하는데 유용함.
+- 배열의 값을 수정하거나 거꾸로 순회하는 것은 불가능함. (읽기 전용에 최적)
+
+**나열 타입(enum)의 활용**
+
+```java
+enum Week { 월, 화, 수, 목, 금, 토, 일 }
+for (Week day : Week.values())
+       System.out.print(day + "요일 ");
+```
+
+- `Week`라는 타입을 만들어서 요일 7개만 가지도록 딱 정해두면 정해진 값 외에 다른 값을 가질 수 없음.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [ForeachEx.java](./.src/ForeachEx.java)
