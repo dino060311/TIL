@@ -265,3 +265,43 @@ for (Week day : Week.values())
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [ForeachEx.java](./.src/ForeachEx.java)
+
+---
+
+## 📅 2026-04-28 (2차원 배열)
+
+### ✅ 배운 내용
+
+**2차원 배열의 선언과 생성**
+
+- 2차원 배열의 저장 공간은 다음과 같이 `new 연산자`를 이용하여 생성함.
+- 첫번째 [ ]는 `행`의 개수를, 두 번째 [ ]는 `열`의 개수를 나타냄.
+
+```java
+intArray = new int [2][5];
+charArray = new char [5][5];
+doubleArra = new double [5][2];
+```
+
+2차열 배열도 다음과 같이 레퍼런스 변수 선언과 배열 생성을 동시에 할 수 있음.
+
+```java
+int intArray [][] = new int [2][5];
+char charArray [][] = new char [5][5];
+double doubleArra [][] = new double [5][2];
+```
+
+**2차원 배열의 초기화**
+
+- 2차원 배열을 선언할 때 각 원소를 초기화할 수 있음.
+- 자동으로 원소 개수만한 배열 공간이 할당되고, 원소 값으로 초기화함.
+
+```java
+int intArray[][] = { {0,1,2}, {3,4,5}, {6,7,8} };
+char charArray [][] = new char { {'a','b','c'}, {'d','e','f'} };
+double doubleArra [][] = new double {0.01,0.02}, {0.03,0.04} };
+```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [ScoreAverage.java](./.src/ScoreAverage.java)
