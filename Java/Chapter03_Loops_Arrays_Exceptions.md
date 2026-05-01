@@ -357,3 +357,46 @@ int intArray[][] = { {0}, {1,2}, {3,4,5}, {6,7,8,9} };
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [ReturnArray.java](./.src/ReturnArray.java)
+
+---
+
+## 📅 2026-05-01 (자바의 예외 처리)
+
+### ✅ 배운 내용
+
+**예외란?**
+
+- 프로그램 실행 도중 발생하는 예기치 못한 사건을 말함.
+
+**예외 처리, try-catch-finally**
+
+- try: 예외가 발생할 가능성이 있는 실행문들을 `try { } 블록`으로 묶음.
+- catch: 특정 예외가 발생했을 때 처리할 코드를 작성함. 예외가 발생해도 프로그램이 강제 종료되지 않게 막아줌.
+- finally: `finally { } 블록`은 생략해도 상관없음. 예외 발생 여부와 상관없이 무조건 실행됨.
+
+**다중 catch와 프로그램 종료 제어**
+
+- 다수의 예외를 처리하고자 하는 경우에는 여러 개의 `catch` 블록을 작성할 수 있으며, 발생한 예외와 타입이 일치하는 catch 블록이 실행됨.
+- 만약 발생한 예외 타입과 일치하는 `catch` 블록이 하나도 없다면, 프로그램은 강제 종료됨.
+- catch 블록 내에서 System.exit(0)을 호출하여 강제로 끝낼 수 있음.
+
+**자바의 예외 클래스**
+
+|          예외 클래스           |                          예외 발생 경우                           |
+| :----------------------------: | :---------------------------------------------------------------: |
+|      ArithmeticException       |        정수를 0으로 나누는 등 산술 연산이 불가능할 때 발생        |
+|      NullPointerException      |             null 레퍼런스를 호출하거나 참조할 때 발생             |
+|       ClassCastException       |           변환할 수 없는 타입으로 객체를 변환할 때 발생           |
+| ArrayIndexOutOfBoundsException |           배열의 인덱스 범위를 벗어나서 접근할 때 발생            |
+|    IllegalArgumentException    |         메소드에 부적절한 매개변수 값을 전달했을 때 발생          |
+|     NumberFormatException      | 문자열이 나타내는 숫자와 일치하지 않는 타입의 숫자로 변환 시 발생 |
+|     InputMismatchException     |      Scanner 입력 시 기대한 타입과 다른 값이 들어올 때 발생       |
+|          IOException           |              입출력 동작 실패 또는 인터럽트 시 발생               |
+|        OutOfMemoryError        |                     메모리가 부족한 경우 발생                     |
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: 
+  [DevideByZeroHandling.java](./.src/DevideByZeroHandling.java)
+  [ArrayException.java](./.src/ArrayException.java)
+  [NumException.java](./.src/NumException.java)
