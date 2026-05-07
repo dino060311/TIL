@@ -214,3 +214,9 @@ for(int i = 0; i <  c.length i++)
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [BookArray.java](./.src/BookArray.java)
+
+### ⚠️ Troubleshooting
+
+- **현상**: `Book` 클래스 사용 시 `Build failed` 발생.
+- **원인**: 동일한 폴더 내에 이미 `Book`이라는 이름의 클래스가 정의된 다른 파일이 있어 이름 충돌 발생.
+- **해결**: 클래스 이름을 MyBook으로 변경하여 고유성을 확보하고, 관련 변수와 생성자 호출 코드를 모두 수정하여 해결함.
