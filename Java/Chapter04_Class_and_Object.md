@@ -388,4 +388,6 @@ System.gc(); // 가비지 컬렉션 강제 요청
 
 ### 💻 실습 코드
 
-- 실습 파일 바로가기: [CalcEx.java](./.src/CalcEx.java)
+- 실습 파일 바로가기: 
+  [CalcEx.java](./.src/CalcEx.java)
+  [StaticMember.java](./.src/StaticMember.java)
