@@ -388,6 +388,104 @@ System.gc(); // 가비지 컬렉션 강제 요청
 
 ### 💻 실습 코드
 
-- 실습 파일 바로가기: 
+- 실습 파일 바로가기:
   [CalcEx.java](./.src/CalcEx.java)
   [StaticMember.java](./.src/StaticMember.java)
+
+---
+
+# 📅 2026-05-15 (final)
+
+## ✅ 배운 내용
+
+## 1. final 클래스
+
+클래스 앞에 `final`을 붙이면 **상속이 불가능한 클래스**가 됨.
+
+### 예제
+
+```java
+final class FinalClass { //이 클래스는 상속 불가
+   ......
+}
+class SubClass extends FinalClass { // 컴파일 오류 발생. FinalClass 상속 불가
+   ......
+}
+```
+
+### 정리
+
+- `final class` → 상속 불가
+- 다른 클래스가 기능을 변경하지 못하도록 보호할 때 사용
+
+## 2. final 메소드
+
+메소드에 `final`을 붙이면 **오버라이딩(재정의) 불가** 상태가 됨.
+
+### 예제
+
+```java
+public class SuperClass {
+  protected final int finalMethod() { ... } // finalMethod()는 자식이 오버라이딩 불가
+}
+class SubClass extends SuperClass { // SubClass가 SuperClass 상속
+  protected int finalMethod() { ... } // 컴파일 오류. finalMethod() 오버라이딩 안 됨
+}
+```
+
+### 정리
+
+- `final method` → 자식 클래스에서 오버라이딩 불가
+- 부모 클래스 기능을 강제로 유지하고 싶을 때 사용
+
+## 3. final 필드
+
+필드에 `final`을 붙이면 **값을 한 번만 설정할 수 있는 상수**가 됨.
+
+### 예제
+
+```java
+public class FinalFieldClass {
+  final int ROWS = 10;
+  void f() {
+    int[] intArray = new int[ROWS];
+    ROWS = 30;
+  }
+}
+```
+
+### 정리
+
+- `final field` → 값 변경 불가
+- 상수를 만들 때 사용
+
+## 4. public static final
+
+`public static final`은 **프로그램 전체에서 사용하는 상수**를 만들 때 사용함.
+
+### 예제
+
+```java
+class SharedClass {
+    public static final double PI = 3.14;
+}
+```
+
+사용 예시
+
+```java
+double area = SharedClass.PI * radius * radius;
+```
+
+### 정리
+
+- `public static final` → 전역 상수
+- 주로 `PI`, `MAX_SIZE` 같은 고정 값에 사용
+
+## 배운 점 요약
+
+| 키워드         | 의미                |
+| -------------- | ------------------- |
+| `final class`  | 상속 불가           |
+| `final method` | 오버라이딩 불가     |
+| `final field`  | 값 변경 불가 (상수) |
