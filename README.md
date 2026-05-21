@@ -6,14 +6,20 @@
 
 ## 🛠️ Tech Stack & Environment
 
-- **Language**: Java 17 (LTS)
+- **Language**: Java 21 (LTS)
 - **IDE**: Visual Studio Code (VS Code)
 - **OS**: Windows 11
 
+---
+
 ### ☕ [Java Programming](./Java/)
 
-- 자바 언어 공부📚
+- 자바 언어 공부 📚
+
+### 🌱 [Git Study](./Git/git-clone-guide.md)
+
+- Git 사용법 정리
 
 ### ⌨️ [VS Code Setup](./vscode/shortcuts.md)
 
-- vscode 단축키 정리
+- vs code 단축키 정리
