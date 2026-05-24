@@ -14,7 +14,7 @@
 | **Ch.02** | 자바 기본 프로그래밍           |  ✅  | [상세 보기](./Chapter02_Java_Basics.md)             |
 | **Ch.03** | 반복문과 배열 그리고 예외 처리 |  ✅  | [상세 보기](./Chapter03_Loops_Arrays_Exceptions.md) |
 | **Ch.04** | 클래스와 객체                  |  ✅  | [상세 보기](./Chapter04_Class_and_Object.md)        |
-| **Ch.05** | 상속                           |  📚  | [상세 보기](./Chapter05_Inheritance.md)             |
+| **Ch.05** | 상속                           |  ✅  | [상세 보기](./Chapter05_Inheritance.md)             |
 
 ---
 
