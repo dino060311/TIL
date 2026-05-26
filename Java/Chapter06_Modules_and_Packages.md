@@ -78,3 +78,71 @@ java.util.Scanner
 ```
 
 와 같이 표현한다.
+
+---
+
+# 📅 2026-05-26 (import와 클래스 경로)
+
+## ✅ 배운 내용
+
+### 1. 패키지 사용하기와 import 문
+
+자바에서 **다른 패키지에 있는 클래스를 사용하려면 패키지명을 포함한 경로명(클래스 경로명)** 을 사용해야 한다.  
+이는 컴파일러가 **클래스 파일의 위치를 정확히 찾을 수 있도록 하기 위해서**이다.  
+예를 들어 `Scanner` 클래스는 `java.util` 패키지에 포함되어 있으므로 다음과 같이 전체 경로명을 사용할 수 있다.  
+
+```java
+public class ImportExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(scaanner.next());
+    }
+}
+```
+
+하지만 매번 긴 경로명을 작성하는 것은 번거롭기 때문에 `import` 문을 사용한다.
+
+### 2. `import` 문 사용 방법
+
+`import` 문은 **다른 패키지의 클래스를 사용할 때 컴파일러에게 클래스 경로명을 알려주는 역할**을 한다.  
+`import` 문은 **반드시 소스 코드 상단에 작성**해야 한다.
+
+#### 1) 특정 클래스만 import 하기
+
+클래스마다 개별적으로 지정할 수 있다.
+
+```java
+import 패키지.클래스명;
+```
+
+예:
+
+```java
+import java.util.Scanner;
+public class ImportExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(scaanner.next());
+    }
+}
+```
+
+#### 2) 같은 패키지의 여러 클래스 import 하기
+
+한 패키지에 있는 여러 클래스를 사용할 경우 `*`(와일드카드)를 사용하여 한 번에 import 할 수 있다.
+
+```java
+import 패키지명.*;
+```
+
+예:
+
+```java
+import java.util.*;
+public class ImportExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(scaanner.next());
+    }
+}
+```
