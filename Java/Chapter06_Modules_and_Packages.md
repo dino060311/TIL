@@ -95,7 +95,7 @@ java.util.Scanner
 public class ImportExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(scaanner.next());
+        System.out.println(scanner.next());
     }
 }
 ```
@@ -122,7 +122,7 @@ import java.util.Scanner;
 public class ImportExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(scaanner.next());
+        System.out.println(scanner.next());
     }
 }
 ```
@@ -142,7 +142,7 @@ import java.util.*;
 public class ImportExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(scaanner.next());
+        System.out.println(scanner.next());
     }
 }
 ```
