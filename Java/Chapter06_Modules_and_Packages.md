@@ -439,7 +439,7 @@ Object obj = new Object();
 
 `Object` 클래스는 모든 객체가 공통적으로 가져야 할 메소드를 제공한다.  
 Class 클래스는 주어진 객체의 클래스에 관한 정보를 담는 클래스이다.  
-Object의 getClass() 메소드를 호출하면 바로 이 Class 객체를 리턴하는데, 다음과 같이 Class 객체의 getName() 메소드를 이용하면 obj 레퍼런스가 가리키는 객체의 클래스 타입을 알아낼 수 있다.  
+Object의 getClass() 메소드를 호출하면 바로 이 Class 객체를 리턴하는데, 다음과 같이 Class 객체의 getName() 메소드를 이용하면 obj 레퍼런스가 가리키는 객체의 클래스 타입을 알아낼 수 있다.
 
 ```java
 System.out.println(obj.getClass().getName());
@@ -447,7 +447,7 @@ System.out.println(obj.getClass().getName());
 
 객체는 생성될 때 객체를 구분하기 위한 고유한 식별자(id)를 가진다.  
 이 값을 해시코드라고 부르고, Object의 hashCode() 메소드는 객체 안에 담겨진 해시코드 값을 리턴한다.  
-Object의 toString()은 객체를 문자열로 변환하여 리턴하는 메소드이다.  
+Object의 toString()은 객체를 문자열로 변환하여 리턴하는 메소드이다.
 
 ### 3. 객체를 문자열로 변환, toString() 메소드
 
@@ -460,7 +460,7 @@ public String toString() {
 ```
 
 Object의 toString() 메소드는 객체의 클래스 이름을 얻어 와서 ' @ '를 연결하고 다시 객체의 해시코드 값을 16 진수로 변환하여 연결한 문자열을 리턴한다.  
-또한 '객체 + 문자열' 연산이나 객체를 출력하는 경우, toString()이 자동으로 호출된다.  
+또한 '객체 + 문자열' 연산이나 객체를 출력하는 경우, toString()이 자동으로 호출된다.
 
 ### 4. 클래스에 toString() 만들기
 
@@ -473,7 +473,7 @@ public String toString();
 ### 5. 객체 비교와 equals() 메소드
 
 기본 자료형은 `==` 연산자로 값을 비교할 수 있다.  
-하지만 객체는 `equals()` 메소드를 이용하여 비교하는 것이 일반적이다.  
+하지만 객체는 `equals()` 메소드를 이용하여 비교하는 것이 일반적이다.
 
 #### `==` 연산자
 
@@ -482,8 +482,119 @@ public String toString();
 #### `boolean equals(Object obj)`
 
 `equals()`는 인자로 전달된 객체와 현재 객체를 비교하여 **내용이 같은지 판단하는 메소드**이다.  
-필요에 따라 개발자가 직접 오버라이딩하여 사용할 수 있다.  
+필요에 따라 개발자가 직접 오버라이딩하여 사용할 수 있다.
 
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [RectEqualsEx.java](./.src/RectEqualsEx.java)
+
+---
+
+# 📅 2026-06-02 (Wrapper 클래스)
+
+## ✅ 배운 내용
+
+### 1. Wrapper 클래스 개념
+
+Wrapper 클래스는 기본 타입(byte, int, double 등)을 객체로 다루기 위해 제공되는 클래스이다.  
+자바에서는 일부 기능이 객체만을 다루기 때문에 기본 타입 값을 객체로 변환할 필요가 있으며, 이를 위해 Wrapper 클래스를 사용한다.
+Wrapper 클래스는 java.lang 패키지에서 제공된다.
+
+| 기본 타입      | byte | short | int     | long | char      | float | double | boolean |
+| -------------- | ---- | ----- | ------- | ---- | --------- | ----- | ------ | ------- |
+| Wrapper 클래스 | Byte | Short | Integer | Long | Character | Float | Double | Boolean |
+
+### 2. Wrapper 클래스의 객체 생성
+
+Wrapper 객체는 기본 타입의 값을 인자로 하여 다음 예와 같이 정적 메소드인 valueOf()를 호출하여 생성한다.
+
+```java
+Integer i = Integer.valueOf(10);
+Character c = Character.valueOf('c');
+Double d = Double.valueOf(3.14);
+Boolean b = Boolean.valueOf(true);
+```
+
+대부분의 Wrapper 클래스는 문자열을 이용해 객체를 생성할 수 있다.
+
+```java
+Integer i = Integer.valueOf("10");
+Double d = Double.valueOf("3.14");
+```
+
+### 3. Wrapper 클래스의 활용
+
+Wrapper 클래스는 문자열과 기본 타입 사이의 변환 기능을 많이 제공한다.
+그중 Integer 클래스는 가장 자주 사용되며 다양한 static 메소드를 제공한다.
+
+| 메소드                                     | 설명                                                   |
+| ------------------------------------------ | ------------------------------------------------------ |
+| `static int bitCount(int i)`               | 정수 i의 이진수 표현에서 1의 개수 리턴                 |
+| `float floatValue()`                       | float 타입으로 값 리턴                                 |
+| `int intValue()`                           | int 타입으로 값 리턴                                   |
+| `long longValue()`                         | long 타입으로 값 리턴                                  |
+| `short shortValue()`                       | short 타입으로 값 리턴                                 |
+| `static int parseInt(String s)`            | 문자열 s를 10진 정수로 변환한 값 리턴                  |
+| `static int parseInt(String s, int radix)` | 문자열 s를 지정된 진법의 정수로 변환한 값 리턴         |
+| `static String toBinaryString(int i)`      | 정수 i를 이진수 표현으로 변환한 문자열 리턴            |
+| `static String toHexString(int i)`         | 정수 i를 16진수 표현으로 변환한 문자열 리턴            |
+| `static String toOctalString(int i)`       | 정수 i를 8진수 표현으로 변환한 문자열 리턴             |
+| `static String toString(int i)`            | 정수 i를 문자열로 변환하여 리턴                        |
+| `static Integer valueOf(int i)`            | 정수 i를 담은 Integer 객체 리턴                        |
+| `static Integer valueOf(String s)`         | 문자열 s를 정수로 변환하여 담고 있는 Integer 객체 리턴 |
+
+#### Wrapper 객체에 들어 있는 기본 타입 값 알아내기
+
+Wrapper 객체에 들어 있는 기본 타입의 값을 알아내기 위해 다음 코드를 이용한다.
+
+```java
+Integer i = Integer.valueOf(10);
+int ii = i.intValue();
+
+Double d = Double.valueOf(3.14);
+double dd = d.doubleValue();
+
+Boolean b = Boolean.valueOf(true);
+boolean bb = b.booleanValue();
+```
+
+#### 문자열을 기본 타입으로 변환
+
+Wrapper 클래스는 다음과 같이 문자열을 기본 타입의 값으로 변환하는 메소드를 제공한다.
+
+```java
+int i = Integer.parseInt("123");
+boolean b = Boolean.parseBoolean("true");
+double d = Double.parseDouble("3.14");
+```
+
+parseInt(), parseBoolean(), parseDouble() 메소드는 모두 static 타입이므로 Wrapper 클래스의 이름으로 바로 메소드를 호출한다.  
+Wrapper 클래스는 해당 타입으로 변환하는 메소드만을 제공한다.
+
+#### 기본 타입 값을 문자열로 변환
+
+Wrapper 클래스는 다음 예와 같이 기본 타입 값을 문자열로 변환하는 메소드를 제공한다.
+
+```java
+String s1 = Integer.toString(123);
+String s2 = Integer.toHexString(123);
+String s3 = Double.toString(3.14);
+String s4 = Character.toString('a');
+String s5 = Boolean.toString(true);
+```
+
+### 4. 박싱(boxing)과 언박싱(unboxing)
+
+기본 타입의 값을 Wrapper 객체로 변환하는 것을 박싱이라고 하고, 반대의 경우를 언박싱이라고 한다.  
+박싱과 언박싱은 자동으로 이루어지며, 이를 자동 박싱, 자동 언박싱이라고 부른다.
+
+```java
+Integer ten = 10; // 자동 박싱
+int n = ten; // 자동 언박싱
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기:
+  [WrapperEx.java](./.src/WrapperEx.java)
+  [AutoBoxingUnBoxingEx.java](./.src/AutoBoxingUnBoxingEx.java)
