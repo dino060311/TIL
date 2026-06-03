@@ -598,3 +598,200 @@ int n = ten; // 자동 언박싱
 - 실습 파일 바로가기:
   [WrapperEx.java](./.src/WrapperEx.java)
   [AutoBoxingUnBoxingEx.java](./.src/AutoBoxingUnBoxingEx.java)
+
+---
+
+# 📅 2026-06-03 (String 클래스)
+
+## ✅ 배운 내용
+
+### 1. String의 특징과 객체 생성
+
+String 클래스는 문자열(String)을 표현하는 클래스이다.  
+자바에서 문자열 리터럴은 모두 String 객체로 처리되며, 문자열을 저장하고 다양한 문자열 처리 기능을 제공한다.  
+String 객체는 여러 생성자를 이용하여 생성할 수 있다.
+
+| 생성자                        | 설명                            |
+| ----------------------------- | ------------------------------- |
+| `string()`                    | 빈 문자열 생성                  |
+| `string(char[] value)`        | 문자 배열로 문자열 생성         |
+| `String(String original)`     | 기존 문자열을 복사하여 생성     |
+| `String(StringBuffer buffer)` | StringBuffer 객체로 문자열 생성 |
+
+#### 스트링 리터럴과 new String()
+
+String 객체는 다음과 같이 생성할 수 있다.
+
+```java
+String s1 = "Java";
+String s2 = new String("Java");
+```
+
+스트링 리터럴은 자바 내부의 String Pool(리터럴 테이블)에 저장되어 같은 문자열을 공유한다.  
+반면 `new String()`은 새로운 객체를 힙 메모리에 생성하므로 같은 문자열이라도 별도의 객체가 된다.
+
+#### 스트링 객체는 수정이 불가능하다
+
+String 객체는 다음과 같이 생성할 수 있다.
+
+```java
+String s1 = "Java";
+String s2 = new String("Java");
+```
+
+스트링 리터럴은 자바 내부의 String Pool(리터럴 테이블)에 저장되어 같은 문자열을 공유한다.  
+반면 `new String()`은 새로운 객체를 힙 메모리에 생성하므로 같은 문자열이라도 별도의 객체가 된다.
+
+#### String 객체는 수정이 불가능하다
+
+String 객체는 한 번 생성되면 내용을 변경할 수 없는 불변(Immutable) 객체이다.
+
+```java
+String s = new String("Hello");
+String t = s.concat("Java");
+```
+
+위 코드에서 `concat()`은 `"HelloJava"`라는 새로운 문자열을 생성하여 반환한다.
+
+결과:
+
+```java
+s = "Hello"
+t = "HelloJava"
+```
+
+원래 문자열인 `s`는 변경되지 않는다.  
+문자열을 변경하려면 새로 생성된 문자열을 다시 저장해야 한다.
+
+```java
+s = s.concat("Java");
+```
+
+### 2. String 활용
+
+String 클래스는 문자열 처리를 위해 다양한 메소드를 제공한다.
+
+| 메소드                                                          | 설정                                                                                                        |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `char charAt(int index)`                                        | index 인덱스에 있는 문자 값 리턴                                                                            |
+| `int codePointAt(int index)`                                    | index 인덱스에 있는 유니코드 값 리턴                                                                        |
+| `int compareTo(String anotherString)`                           | 두 스트링을 사전 순으로 비교하여 같으면 0, 현 스트링이 anotherString보다 먼저 나오면 음수, 아니면 양수 리턴 |
+| `String concat(String str)`                                     | 현재 스트링 뒤에 str 스트링을 덧붙인 새로운 스트링 리턴                                                     |
+| `boolean contains(CharSequence s)`                              | s에 지정된 문자들을 포함하고 있으면 true 리턴                                                               |
+| `int length()`                                                  | 스트링의 길이(문자 개수) 리턴                                                                               |
+| `String replace(Charsequence target, Charsequence replacement)` | target이 지정하는 일련의 문자들을 replacement가 지정하는 문자들로 변경한 스트링 리턴                        |
+| `String[] split(String regex)`                                  | 정규식 regex에 일치하는 부분을 중심으로 스트링을 분리하고, 분리된 스트링들을 배열로 저장하여 리턴           |
+| `String subString(int beginIndex)`                              | beginIndex 인덱스부터 시작하는 서브 스트링 리턴                                                             |
+| `String toLowerCase()`                                          | 소문자로 변경한 스트링 리턴                                                                                 |
+| `String toUpperCase()`                                          | 대문자로 변경한 스트링 리턴                                                                                 |
+| `String trim()`                                                 | 스트링 앞뒤의 공백 문자들을 제거한 스트링 리턴                                                              |
+| `char[] toCharArray()`                                          | 스트링의 문자들을 배열로 만들어 리턴                                                                        |
+
+#### 문자열 비교: int compareTo(String anotherString)
+
+`compareTo()` 메소드는 두 문자열을 사전 순으로 비교한다.
+
+```java
+String java = "Java";
+String cpp = "C++";
+
+int result = java.compareTo(cpp);
+```
+
+반환값
+
+| 값   | 의미                         |
+| ---- | ---------------------------- |
+| 0    | 두 문자열이 같음             |
+| 음수 | 현재 문자열이 사전 순으로 앞 |
+| 양수 | 현재 문자열이 사전 순으로 뒤 |
+
+예시
+
+```java
+String java = "Java";
+String cpp = "C++";
+
+int result = java.compareTo(cpp);
+
+if(result == 0)
+    System.out.println("the same");
+else if(result < 0)
+    System.out.println(java + " < " + cpp);
+else
+    System.out.println(java + " > " + cpp);
+```
+
+출력
+
+```java
+Java > C++
+```
+
+문자열이 완전히 같은지만 비교할 경우에는 `equals()` 메소드를 사용하는 것이 일반적이다.
+
+#### 문자열 연결: String concat(String str)
+
+문자열은 `+` 연산자 또는 `concat()` 메소드를 이용하여 연결할 수 있다.
+
+```java
+System.out.print("abcd" + 1 + true + 3.13e-2 + 'E' + "fgh");
+```
+
+출력
+
+```java
+abcd1true0.0313Efgh
+````
+
+객체가 포함된 경우에는 `toString()`이 자동 호출되어 문자열로 변환된 후 연결된다.
+또한 `concat()` 메소드를 이용해서도 문자열을 연결할 수 있다.
+
+```java
+"I love ".concat("Java.");
+````
+
+결과
+
+```java
+I love Java.
+```
+
+#### 공백 제거 : String trim()
+
+`trim()` 메소드는 문자열 앞뒤의 공백 문자를 제거한다.
+
+```java
+String a = "    avcd    def    ";
+String b = "    xyz\t";
+String c = a.trime();
+String d = b.trim();
+```
+
+결과
+
+```java
+c = "abcd    def"
+d = "xyz"
+```
+
+문자열 중간의 공백은 제거되지 않는다.
+
+#### 문자열의 문자: char charAt(int index)
+
+`charAt()` 메소드는 문자열의 특정 위치 문자를 반환한다.
+
+```java
+String a = "class";
+char c = a.charAt(2);
+```
+
+결과
+
+```java
+c = 'a'
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [StringEx.java](./.src/StringEx.java)
