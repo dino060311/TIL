@@ -742,14 +742,14 @@ System.out.print("abcd" + 1 + true + 3.13e-2 + 'E' + "fgh");
 
 ```java
 abcd1true0.0313Efgh
-````
+```
 
 객체가 포함된 경우에는 `toString()`이 자동 호출되어 문자열로 변환된 후 연결된다.
 또한 `concat()` 메소드를 이용해서도 문자열을 연결할 수 있다.
 
 ```java
 "I love ".concat("Java.");
-````
+```
 
 결과
 
@@ -790,6 +790,89 @@ char c = a.charAt(2);
 
 ```java
 c = 'a'
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [StringEx.java](./.src/StringEx.java)
+
+---
+
+# 📅 2026-06-04 (StringBuffer 클래스)
+
+## ✅ 배운 내용
+
+### 1. StringBuffer의 생성과 특징
+
+StringBuffer 클래스는 `java.lang` 패키지에 포함되어 있으며, String 클래스와 같이 문자열을 다루는 클래스이다.  
+String 객체는 한 번 생성되면 내부 문자열을 변경할 수 없는 불변(Immutable) 객체이지만, StringBuffer 객체는 문자열을 저장하는 가변 버퍼(Buffer)를 가지고 있어 문자열의 수정이 가능하다.  
+또한 문자열의 길이가 증가하면 내부 버퍼의 크기를 자동으로 조절한다.
+
+StringBuffer 객체 생성 예
+
+```java
+StringBuffer sb = new StringBuffer("Java");
+```
+
+StringBuffer 클래스의 주요 생성자는 다음과 같다.
+
+| 생성자                           | 설명                                                    |
+| -------------------------------- | ------------------------------------------------------- |
+| `StringBuffer()`                 | 초기 크기가 16인 StringBuffer 객체 생성                 |
+| `StringBuffer(CharSequence seq)` | seq가 지정하는 문자들을 포함하는 StringBuffer 객체 생성 |
+| `StringBuffer(int capacity)`     | 지정된 초기 크기를 갖는 StringBuffer 객체 생성          |
+| `StringBuffer(String str)`       | 지정된 문자열로 초기화된 StringBuffer 객체 생성         |
+
+#### 2. StringBuffer 활용
+
+StringBuffer 클래스는 문자열을 수정하거나 조작할 수 있는 다양한 메소드를 제공한다.
+
+| 메소드                                                 | 설명                                                                              |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `StringBuffer append(String str)`                      | 문자열 str을 현재 StringBuffer의 끝에 추가                                        |
+| `StringBuffer append(StringBuffer sb)`                 | 다른 StringBuffer 객체를 현재 StringBuffer의 끝에 추가                            |
+| `int capacity()`                                       | 현재 버퍼의 크기 반환                                                             |
+| `StringBuffer delete(int start, int end)`              | start 위치부터 end 위치 직전까지의 문자열 삭제                                    |
+| `StringBuffer insert(int offset, String str)`          | offset 위치에 문자열 삽입                                                         |
+| `StringBuffer replace(int start, int end, String str)` | start 위치부터 end 위치 직전까지의 문자열을 str로 변경                            |
+| `StringBuffer reverse()`                               | 문자열 순서를 반대로 변경                                                         |
+| `void setLength(int newLength)`                        | 문자열 길이를 newLength로 변경. 길이가 줄어들면 잘리고, 늘어나면 널 문자로 채워짐 |
+
+### 3. StringBuffer와 String의 차이
+
+| String                          | StringBuffer               |
+| ------------------------------- | -------------------------- |
+| 문자열 수정 불가 (Immutable)    | 문자열 수정 가능 (Mutable) |
+| 문자열 변경 시 새로운 객체 생성 | 기존 객체의 내용 변경      |
+| 문자열 변경이 적을 때 사용      | 문자열 변경이 많을 때 사용 |
+
+예시
+
+```java
+String str = "Java";
+str.concat(" Programming");
+```
+
+결과
+
+```java
+str = "Java"
+```
+
+원본 문자열은 변경되지 않는다.
+
+반면 StringBuffer는 다음과 같이 기존 객체가 변경된다.
+
+```java
+StringBuffer sb = new StringBuffer("Java");
+sb.append(" Programming");
+System.out.println(sb);
+```
+
+출력
+
+```java
+Java Programming
 ```
 
 ## 💻 실습 코드
