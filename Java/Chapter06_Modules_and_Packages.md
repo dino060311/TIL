@@ -878,3 +878,62 @@ Java Programming
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [StringEx.java](./.src/StringEx.java)
+
+---
+
+# 📅 2026-06-05 (StringTokenizer 클래스)
+
+## ✅ 배운 내용
+
+### 1. StringTokenizer의 생성과 특징
+
+StringTokenizer 클래스는 `java.util` 패키지에 포함되어 있으며, 하나의 문자열을 여러 개의 문자열로 분리하기 위해 사용된다.  
+문자열을 분리할 때 사용되는 기준 문자를 **구분 문자(delimiter)** 라고 하며, 구분 문자에 의해 분리된 문자열을 **토큰(token)** 이라고 한다.  
+StringTokenizer 객체는 생성과 동시에 문자열을 토큰으로 분리한다.
+
+예를 들어, 다음은 '&' 문자를 기준으로 문자열 `"name=kitae&addr=seoul&age=21"` 을 여러 토큰으로 분리하는 코드이다.
+
+```java
+String query = "name=kitae&addr=seoul&age=21";
+StringTokenizer st = new StringTokenizer(query, "&");
+```
+
+실행 결과
+
+```text
+name=kitae
+addr=seoul
+age=21
+```
+
+StringTokenizer 객체는 분리된 토큰을 내부에 저장한다.  
+분리된 토큰의 개수는 `countTokens()` 메소드로 확인할 수 있으며, `nextToken()` 메소드를 이용하여 토큰을 하나씩 가져올 수 있다.
+
+```java
+int count = st.countTokens();
+```
+
+```java
+String token = st.nextToken();
+```
+
+### 2. StringTokenizer 생성자
+
+StringTokenizer 클래스의 주요 생성자는 다음과 같다.
+| 생성자 | 설명 |
+|---------|---------|
+| `StringTokenizer(String str)` | 기본 구분 문자를 이용하여 문자열을 분리하는 StringTokenizer 생성 |
+| `StringTokenizer(String str, String delim)` | delim을 구분 문자로 사용하여 문자열을 분리하는 StringTokenizer 생성 |
+| `StringTokenizer(String str, String delim, boolean returnDelims)` | returnDelims가 true이면 구분 문자도 토큰으로 포함 |
+
+### 3. StringTokenizer 주요 메소드
+
+| 메소드                    | 설명                            |
+| ------------------------- | ------------------------------- |
+| `int countTokens()`       | 현재 남아 있는 토큰의 개수 반환 |
+| `boolean hasMoreTokens()` | 다음 토큰이 존재하면 true 반환  |
+| `String nextToken()`      | 다음 토큰 반환                  |
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [StringTokenizerEx.java](./.src/StringTokenizerEx.java)
