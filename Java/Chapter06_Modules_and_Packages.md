@@ -1004,3 +1004,110 @@ for(int x=0; x<10; x++) {
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [MathEx.java](./.src/MathEx.java)
+
+---
+
+# 📅 2026-06-07 (Calendar 클래스)
+
+## ✅ 배운 내용
+
+### 1. Calendar 클래스의 특징
+
+Calendar 클래스는 `java.util` 패키지에 포함된 추상 클래스로, 날짜와 시간 정보를 저장하고 관리하기 위해 사용된다.
+
+Calendar 클래스는 크게 두 가지 목적으로 사용된다.
+
+1. 년, 월, 일, 시, 분, 초, 밀리초 등의 날짜와 시간 정보를 저장
+2. 달력과 관련된 다양한 정보 제공
+
+Calendar 클래스를 이용하면 오늘이 몇 년, 몇 월, 며칠인지 알 수 있을 뿐만 아니라 특정 날짜의 요일이나 해당 달의 마지막 날짜도 알아낼 수 있다.  
+하지만 Calendar 클래스를 이용하여 시스템 날짜와 시간을 변경할 수는 없다.
+
+| 필드           | 의미                           |
+| -------------- | ------------------------------ |
+| `YEAR`         | 연도                           |
+| `MONTH`        | 달(0~11)                       |
+| `HOUR`         | 시간(0~11)                     |
+| `HOUR_OF_DAY`  | 24시간을 기준으로 한 시간      |
+| `SECOND`       | 초                             |
+| `DAY_OF_MONTH` | 한 달의 날짜                   |
+| `DAY_OF_YEAR`  | 현재 연도에서 날짜(1부터 시작) |
+| `DAY_OF_WEEK`  | 한 주의 요일                   |
+| `WEEK_OF_YEAR` | 현재 연도에서 날짜(1부터 시작) |
+| `AM_PM`        | 오전인지 오후인지 구분         |
+| `MINUTE`       | 분                             |
+| `MILLISECOND`  | 밀리초                         |
+
+### 2. Calendar 객체 생성 - 현재 날짜와 시간
+
+Calendar 클래스는 추상 클래스이므로 객체를 직접 생성할 수 없다.  
+따라서 `getInstance()` 메소드를 이용하여 Calendar 객체를 생성한다.
+
+```java
+Calendar now = Calendar.getInstance();
+```
+
+`getInstance()`가 반환한 객체에는 현재 날짜와 시간 정보가 저장되어 있다.
+
+### 3. 날짜와 시간 알아내기
+
+Calendar 객체에 저장된 날짜와 시간은 `get()` 메소드를 이용하여 알아낼 수 있다.
+
+```java
+int year = now.get(Calendar.YEAR);
+int month = now.get(Calendar.MONTH) + 1;
+```
+
+Calendar의 MONTH는 0부터 시작한다.
+
+| 실제 월 | MONTH 값 |
+| ------- | -------- |
+| 1월     | 0        |
+| 2월     | 1        |
+| ...     | ...      |
+| 12월    | 11       |
+
+따라서 실제 월을 출력할 때는 `+1`을 해주어야 한다.
+
+### 4. 날짜와 시간 설정하기
+
+`set()` 메소드를 이용하면 Calendar 객체에 원하는 날짜와 시간을 설정할 수 있다.  
+예를 들어 처음 데이트한 날짜와 시간을 저장하는 코드는 다음과 같다.
+
+```java
+calendar firstDate = Calendar.getInstance();
+firstDate.clear();
+firstDate.set(2024, 11, 25);
+firstDate.set(Calendar.HOUR_OF_DAY, 20);
+firstDate.set(Calendar.MINUTE, 30);
+```
+
+### 5. 달의 최대 날 수 알아내기
+
+Calendar 객체에 연도와 월을 설정하면 해당 월의 마지막 날짜를 알아낼 수 있다.
+
+```java
+Calendar cal = Calendar.getInstance();
+cal.set(Calendar.YEAR, 2026);
+cal.set(Calendar.MONTH, 8);
+int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+```
+
+`getActualMaximum()` 메소드는 해당 필드가 가질 수 있는 최댓값을 반환한다.
+
+### 1. 날짜를 지정하여 요일 알아내기
+
+Calendar 객체에 날짜를 설정한 후 `DAY_OF_WEEK` 값을 얻으면 요일을 알 수 있다.
+
+```java
+cal.set(Calendar.YEAR, 2024);
+cal.set(Calendar.MONTH, 1);
+cal.set(Calendar.DAY_OF_MONTH, 5);
+int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기:
+  [CalendarEx.java](./.src/CalendarEx.java)
+  [FindDayOfWeekEx.java](./.src/FindDayOfWeekEx.java)
