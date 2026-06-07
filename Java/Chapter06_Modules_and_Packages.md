@@ -937,3 +937,70 @@ StringTokenizer 클래스의 주요 생성자는 다음과 같다.
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [StringTokenizerEx.java](./.src/StringTokenizerEx.java)
+
+---
+
+# 📅 2026-06-07 (Math 클래스)
+
+## ✅ 배운 내용
+
+### 1. Math 클래스의 특징
+
+Math 클래스는 `java.lang` 패키지에 포함되어 있으며, 다양한 수학 연산 기능을 제공한다.  
+Math 클래스의 모든 메소드는 `static`으로 선언되어 있으므로 객체를 생성하지 않고 클래스 이름으로 직접 호출할 수 있다.
+
+```java
+double d = Math.random();
+double pi = Math.PI;
+```
+
+Math 클래스의 주요 메소드는 다음과 같다.
+
+| 메소드                                  | 설명                                                           |
+| --------------------------------------- | -------------------------------------------------------------- |
+| `static double abs(double a)`           | 실수 a의 절댓값 리턴                                           |
+| `static double cos(double a)`           | 실수 a의 cosine 값 리턴                                        |
+| `static double sin(double a)`           | 실수 a의 sine 값 리턴                                          |
+| `static double tan(double a)`           | 실수 a의 tangent 값 리턴                                       |
+| `static double exp(double a)`           | e의 a승 값 반환턴                                              |
+| `static double ceil(double a)`          | 올림. a보다 크거나 같은 수 중 가장 작은 정수를 실수형으로 반환 |
+| `static double floor(double a)`         | 내림. a보다 작거나 같은 수 중 가장 큰 정수를 실수형으로 반환   |
+| `static double max(double a, double b)` | 두 수 a, b 중에서 큰 수 리턴                                   |
+| `static double min(double a, double b)` | 두 수 a, b 중에서 작은 수 리턴                                 |
+| `static double random()`                | 0.0 이상 1.0 미만의 임의의 실수 반환                           |
+| `static long round(double a)`           | 반올림한 정수를 long 타입으로 반환                             |
+| `static double sqrt(double a)`          | 실수 a의 제곱근 리턴                                           |
+
+### 2. Math 클래스를 활용한 난수 발생
+
+Math 클래스에서 가장 많이 사용하는 메소드는 `random()`이다.  
+`random()`은 0.0 이상 1.0 미만의 임의의 `double` 값을 반환한다.  
+예를 들어 1부터 100까지의 정수 난수를 10개 생성하는 코드는 다음과 같다.
+
+```java
+for(int x=0; x<10; x++) {
+    int n = (int)(Math.random()*100 +1);
+    System.out.println(n);
+}
+```
+
+난수가 생성되는 과정은 다음과 같다.
+
+1. `Math.random()`
+   - 0.0 ~ 0.9999...
+
+2. `Math.random() * 100`
+   - 0.0 ~ 99.9999...
+
+3. `Math.random() * 100 + 1`
+   - 1.0 ~ 100.9999...
+
+4. `(int)` 형변환
+   - 소수점 이하 제거
+   - 최종 결과: 1 ~ 100 정수
+
+따라서 위 코드는 1부터 100 사이의 정수를 무작위로 생성한다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [MathEx.java](./.src/MathEx.java)
