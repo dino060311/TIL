@@ -110,3 +110,246 @@ public class Box<T> {
 | `K`           | Key(키)       |
 | `V`           | Value(값)     |
 | `N`           | Number(숫자)  |
+
+---
+
+# 📅 2026-06-09 (제네릭 컬렉션 활용)
+
+## ✅ 배운 내용
+
+### 1. Vector<E>
+
+`Vector<E>`(이하 Vector)는 배열을 가변 크기로 다룰 수 있게 하고, 객체의 삽입, 삭제, 이동을 쉽게 할 수 있도록 만든 컬렉션 클래스이다.  
+벡터는 요소의 개수에 따라 자동으로 크기를 조절하며, 요소의 삽입과 삭제에 따라 내부 요소들의 위치도 자동으로 이동시킨다.
+
+#### 벡터 생성
+
+벡터를 생성할 때는 `Vector<E>`의 E에 저장할 요소의 타입을 지정한다.  
+예를 들어 정수만 저장하는 벡터는 다음과 같이 생성한다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+```
+
+벡터는 int, char, double 등의 기본 타입을 E에 사용할 수 없다.
+
+잘못된 예
+
+```java
+Vector<int> v = new Vector<int>();
+```
+
+문자열만 저장하는 벡터는 다음과 같이 생성한다.
+
+```java
+Vector<String> stringVector;
+stringVector = new Vector<String>();
+```
+
+타입을 지정하지 않고 사용할 수도 있지만 컴파일 경고가 발생한다.
+
+```java
+Vector v = new Vector();
+```
+
+초기 용량을 지정하여 생성할 수도 있다.
+
+```java
+Vector<Integer> v = new Vector<Integer>(5000);
+```
+
+초기 용량을 크게 설정하면 벡터가 크기를 늘리는 과정에서 발생하는 성능 저하를 줄일 수 있다.
+
+### 2. Vector의 주요 메소드
+
+| 메소드                                      | 설명                     |
+| ------------------------------------------- | ------------------------ |
+| `boolean add(E element)`                    | 벡터의 맨 뒤에 요소 추가 |
+| `void add(int index, E element)`            | 지정한 위치에 요소 삽입  |
+| `int capacity()`                            | 현재 용량 반환           |
+| `boolean addAll(Collection<? extends E> c)` | 컬렉션의 모든 요소 추가  |
+| `void clear()`                              | 모든 요소 삭제           |
+| `boolean contains(Object o)`                | 특정 객체 포함 여부 확인 |
+| `E elementAt(int index)`                    | 지정 위치의 요소 반환    |
+| `E get(int index)`                          | 지정 위치의 요소 반환    |
+| `int indexOf(Object o)`                     | 객체의 인덱스 반환       |
+| `boolean isEmpty()`                         | 비어 있으면 true 반환    |
+| `E remove(int index)`                       | 지정 위치의 요소 삭제    |
+| `boolean remove(Object o)`                  | 특정 객체 삭제           |
+| `void removeAllElements()`                  | 모든 요소 삭제           |
+| `int size()`                                | 요소 개수 반환           |
+| `Object[] toArray()`                        | 배열로 변환              |
+
+#### 벡터에 요소 삽입
+
+벡터의 끝에 요소를 추가할 수 있다.
+
+```java
+v.add(Integer.valueOf(5));
+v.add(Integer.valueOf(4));
+v.add(Integer.valueOf(-1));
+```
+
+자동 박싱을 이용하면 다음과 같이 간단하게 작성할 수 있다.
+
+```java
+v.add(5);
+v.add(4);
+v.add(-1);
+```
+
+벡터에는 지정한 타입의 객체만 저장할 수 있다.
+
+오류 예시
+
+```java
+v.add("hello");
+v.add(3.5);
+v.add(new Person());
+```
+
+벡터에는 `null`도 저장할 수 있다.
+
+```java
+v.add(null);
+```
+
+`add(index, element)` 메소드를 이용하면 원하는 위치에 요소를 삽입할 수 있다.
+
+```java
+v.add(2, 100);
+```
+
+이 코드는 인덱스 2의 위치에 정수 100을 삽입하고 기존의 인덱스 2와 그 뒤에 있는 요소들을 모두 한 자리씩 뒤로 이동시킨다.  
+하지만, 벡터에 1개의 요소(인덱스 0의 위치)만 들어있는 상태라면 이 코드가 실행될 때 예외가 발생한다.  
+인덱스 1이 빈 공간이 되기 때문이다.
+
+#### 벡터 내의 요소 알아내기
+
+벡터의 요소를 읽기 위해 `get()` 또는 `elementAt()` 메소드를 사용한다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+v.add(5);
+v.add(4);
+v.add(-1);
+```
+
+다음은 인덱스 1에 있는 값을 읽는 코드이다.
+
+```java
+Integer obj = v.get(1);
+int i = obj.intValue();
+```
+
+자동 언박싱 덕분에 다음과 같이 사용할 수 있다.
+
+```java
+int i = v.get(1);
+```
+
+#### 벡터의 크기와 용량 알아내기
+
+#### size()
+
+벡터에 저장된 요소의 개수를 반환한다.
+
+```java
+int len = v.size();
+```
+
+#### capacity()
+
+벡터의 현재 용량을 반환한다.
+
+```java
+int cap = v.capacity();
+```
+
+크기(size)와 용량(capacity)은 서로 다르다.
+
+예를 들어 벡터의 용량이 20이고 실제 저장된 요소가 5개라면
+
+- size() = 5
+- capacity() = 20
+
+이다.
+
+#### 벡터에서 요소 삭제
+
+특정 위치의 요소를 삭제할 수 있다.
+
+```java
+v.remove(1);
+```
+
+실행 결과 인덱스 1의 요소가 삭제되고 뒤의 요소들은 한 칸씩 앞으로 이동한다.
+
+객체를 이용하여 삭제할 수도 있다.
+
+```java
+Integer m = Integer.valueOf(100);
+
+v.add(m);
+
+v.remove(m);
+```
+
+모든 요소를 삭제하려면 다음과 같이 사용한다.
+
+```java
+v.removeAllElements();
+```
+
+또는
+
+```java
+v.clear();
+```
+
+두 메소드 모두 벡터의 모든 요소를 삭제한다.
+
+### 3. 컬렉션과 자동 박싱/언박싱
+
+컬렉션은 객체만 저장할 수 있기 때문에 기본 타입은 Wrapper 클래스로 변환하여 저장한다.  
+예를 들어 다음 코드는 Integer 객체를 생성하여 저장하는 방법이다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+v.add(Integer.valueOf(4));
+v.add(Integer.valueOf(-1));
+```
+
+하지만 자동 박싱 기능을 이용하면 다음과 같이 작성할 수 있다.
+
+```java
+v.add(4);
+v.add(-1);
+```
+
+컴파일러가 자동으로 다음 코드로 변환한다.
+
+```java
+v.add(Integer.valueOf(4));
+v.add(Integer.valueOf(-1));
+```
+
+반대로 컬렉션에서 값을 꺼낼 때는 자동 언박싱이 일어난다.
+
+```java
+int k = v.get(0);
+```
+
+위 코드는 실제로 다음과 같이 처리된다.
+
+```java
+int k = v.get(0).intValue();
+```
+
+자동 박싱과 자동 언박싱은 모든 컬렉션 클래스에서 동일하게 적용된다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기:
+  [VectorEx.java](./.src/VectorEx.java)
+  [PointVectorEx.java](./.src/PointVectorEx.java)
