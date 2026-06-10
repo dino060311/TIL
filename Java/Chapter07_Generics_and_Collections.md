@@ -353,3 +353,179 @@ int k = v.get(0).intValue();
 - 실습 파일 바로가기:
   [VectorEx.java](./.src/VectorEx.java)
   [PointVectorEx.java](./.src/PointVectorEx.java)
+
+---
+
+# 📅 2026-06-10 (제네릭 컬렉션 활용)
+
+## ✅ 배운 내용
+
+### 1. 컬렉션을 매개변수로 받는 메소드 만들기
+
+컬렉션 객체는 일반 객체와 마찬가지로 메소드의 매개변수로 전달할 수 있다.  
+예를 들어 `Vector<Integer>`를 매개변수로 받아 벡터에 저장된 모든 요소를 출력하는 메소드는 다음과 같이 작성할 수 있다.
+
+```java
+public void printVector(Vector<Integer> v) {
+    for(int i = 0; i < v.size(); i++) {
+        int n = v.get(i);
+        System.out.println(n);
+    }
+}
+```
+
+이 메소드는 다음과 같이 호출할 수 있다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+printVector(v);
+```
+
+매개변수의 타입을 `Vector<Integer>`로 지정하였기 때문에 정수만 저장하는 벡터만 전달할 수 있다.
+
+### 2. 자바의 타입 추론 기능의 진화, Jaava 7, Java 10
+
+다음은 제네릭 컬렉션 객체를 생성하는 전형적인 문법이다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+```
+
+#### Java 7의 다이어몬드 연산자(<>) 도입
+
+Java 7부터는 객체 생성부의 타입 매개변수를 생략할 수 있도록 다이어몬드 연산자(`<>`)를 지원한다.
+
+```java
+Vector<Integer> v = new Vector<>();
+```
+
+컴파일러가 왼쪽 선언부를 보고 타입을 자동으로 추론한다.
+
+#### Java 10의 var 키워드
+
+Java 10부터는 `var` 키워드를 이용하여 변수 타입 자체를 컴파일러가 추론하도록 할 수 있다.
+
+```java
+var v = new Vector<Integer>();
+```
+
+컴파일러는 위 코드를 다음과 같이 해석한다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+```
+
+타입 추론 기능은 코드 작성량을 줄여주고 가독성을 높여준다.
+
+### 3. ArrayList<E>
+
+`ArrayList<E>`는 가변 크기의 배열을 구현한 컬렉션 클래스이며, `java.util.ArrayList` 패키지에 포함되어 있다.  
+ArrayList는 Vector와 거의 동일한 기능을 제공하지만 중요한 차이점이 있다.
+
+| 구분                    | Vector          | ArrayList       |
+| ----------------------- | --------------- | --------------- |
+| 동기화(Synchronization) | 지원            | 지원하지 않음   |
+| 멀티스레드 환경         | 안전            | 주의 필요       |
+| 실행 속도               | 상대적으로 느림 | 상대적으로 빠름 |
+
+ArrayList는 동기화를 지원하지 않기 때문에 멀티스레드 환경에서는 데이터가 손상될 수 있다.  
+하지만 동기화 처리에 따른 오버헤드가 없기 때문에 단일 스레드 환경에서는 Vector보다 더 빠르게 동작한다.  
+ArrayList 역시 내부적으로 배열을 사용하며 인덱스를 통해 요소에 접근한다.  
+인덱스는 0부터 시작한다.
+
+#### ArrayList의 생성
+
+문자열만 저장하는 ArrayList는 다음과 같이 생성한다.
+
+```java
+ArrayList<String> a = new ArrayList<String>();
+```
+
+Java 7 이후에는 다음과 같이 작성할 수도 있다.
+
+```java
+ArrayList<String> a = new ArrayList<>();
+```
+
+ArrayList는 내부 용량을 자동으로 조절하므로 일반적으로 용량을 직접 관리할 필요가 없다.
+
+#### ArrayList에 요소 삽입
+
+`add()` 메소드를 사용하여 요소를 추가할 수 있다.
+
+```java
+a.add("Hello");
+a.add("Hi");
+a.add("Java");
+```
+
+제네릭 타입을 `String`으로 지정했기 때문에 문자열만 저장할 수 있다.
+
+다음 코드는 오류가 발생한다.
+
+```java
+a.add(5);
+a.add(new Point(3, 5));
+```
+
+ArrayList에도 `null`을 저장할 수 있다.
+
+```java
+a.add(null);
+```
+
+중간 위치에 요소를 삽입할 수도 있다.
+
+```java
+a.add(2, "Sahni");
+```
+
+이 경우 기존 인덱스 2 이후의 요소들은 한 칸씩 뒤로 이동한다.  
+주의할 점은 존재하지 않는 위치에 삽입하면 예외가 발생한다는 것이다.
+
+#### ArrayList 내의 요소 알아내기
+
+ArrayList의 요소는 `get()` 메소드를 이용해 읽는다.
+
+```java
+String str = a.get(1);
+```
+
+위 코드는 인덱스 1에 있는 문자열을 반환한다.
+
+#### ArrayList의 크기 알아내기
+
+현재 저장된 요소의 개수는 `size()` 메소드로 알 수 있다.
+
+```java
+int len = a.size();
+```
+
+ArrayList는 Vector와 달리 현재 용량을 반환하는 `capacity()` 메소드를 제공하지 않는다.
+
+#### ArrayList에서 요소 삭제
+
+특정 위치의 요소를 삭제하려면 `remove()` 메소드를 사용한다.
+
+```java
+a.remove(1);
+```
+
+실행 결과 인덱스 1의 요소가 삭제되고 뒤에 있는 요소들은 한 칸씩 앞으로 이동한다.  
+객체를 이용하여 삭제할 수도 있다.
+
+```java
+String s = new String("bye");
+a.add(s);
+a.remove(s);
+```
+
+ArrayList의 모든 요소를 삭제하려면 다음과 같이 사용한다.
+
+```java
+a.clear();
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [ArrayListEx.java](./.src/ArrayListEx.java)
