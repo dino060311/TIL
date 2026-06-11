@@ -529,3 +529,52 @@ a.clear();
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [ArrayListEx.java](./.src/ArrayListEx.java)
+
+---
+
+# 📅 2026-06-10 (제네릭 컬렉션 활용)
+
+## ✅ 배운 내용
+
+### 1. 컬렉션의 순차 검색을 위한 Iterator
+
+Vector, ArrayList, LinkedList, HashSet과 같이 여러 요소를 저장하는 컬렉션에서는 요소를 순차적으로 검색해야 하는 경우가 많다.  
+이때 `java.util.Iterator<E>` 인터페이스를 사용하면 컬렉션의 종류와 상관없이 동일한 방법으로 요소를 순차적으로 탐색할 수 있다.
+
+예를 들어 `Vector<Integer>` 컬렉션이 있을 때 다음과 같이 Iterator 객체를 생성한다.
+
+```java
+Vector<Integer> v = new Vector<Integer>();
+```
+
+다음과 같이 벡터 v의 `iterator()`를 호출하여 벡터 v의 각 요소를 순차적으로 검색할 수 있는 Iterator 객체를 얻어낸다.  
+Iterator 객체를 **반복자(iterator)** 라고 부른다.
+
+```java
+Iterator<Integer> it = v.iterator();
+```
+
+벡터 v의 요소 타입에 맞추어 Iterator<E>의 E에 Integer를 지정하였다.  
+이제 it 객체를 이용하면 벡터의 각 요소를 순차적으로 검색할 수 있다.
+
+다음은 it를 이용하여 v의 각 요소를 순차 방문하는 코드이다.  
+처음 `it.next()`는 v의 첫 번째 요소를 반환하고, Iterator는 다음 요소를 가리킨다.
+
+```java
+while(it.hasNext()) {
+    int n = it.next();
+    ....
+}
+```
+
+### 2. Iterator의 주요 메소드
+
+| 메소드              | 설명                                |
+| ------------------- | ----------------------------------- |
+| `boolean hasNext()` | 방문할 요소가 남아 있으면 true 반환 |
+| `E next()`          | 다음 요소 반환                      |
+| `void remove()`     | 마지막으로 반환된 요소 제거         |
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [IteratorEx.java](./.src/IteratorEx.java)
