@@ -351,8 +351,8 @@ int k = v.get(0).intValue();
 ## 💻 실습 코드
 
 - 실습 파일 바로가기:
-  [VectorEx.java](./.src/VectorEx.java)
-  [PointVectorEx.java](./.src/PointVectorEx.java)
+  - [VectorEx.java](./.src/VectorEx.java)
+  - [PointVectorEx.java](./.src/PointVectorEx.java)
 
 ---
 
@@ -532,7 +532,7 @@ a.clear();
 
 ---
 
-# 📅 2026-06-10 (제네릭 컬렉션 활용)
+# 📅 2026-06-11 (제네릭 컬렉션 활용)
 
 ## ✅ 배운 내용
 
@@ -578,3 +578,150 @@ while(it.hasNext()) {
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [IteratorEx.java](./.src/IteratorEx.java)
+
+---
+
+# 📅 2026-06-13 (제네릭 컬렉션 활용)
+
+## ✅ 배운 내용
+
+### 1. HashMap<K, V>
+
+`HashMap<K, V>` 컬렉션은 `java.util.HashMap` 클래스이며, **키(Key)** 와 **값(Value)** 의 쌍으로 구성되는 요소를 저장한다.
+
+- K : 키(Key)로 사용할 데이터 타입
+- V : 값(Value)으로 사용할 데이터 타입
+
+해시맵은 내부적으로 해시(Hash) 기법을 이용하여 데이터를 저장하고 관리한다.
+
+다음은 해시맵을 생성하고 요소를 저장 및 검색하는 예시이다.
+
+```java
+HashMap<String, String> h = new HashMap<String, String>();
+h.put("apple", "사과");
+String kor = h.get("apple");
+```
+
+`put(key, value)` 메소드는 키와 값을 해시맵에 저장한다.
+
+```java
+h.put("apple", "사과");
+```
+
+`get(key)` 메소드는 키에 대응하는 값을 반환한다.
+
+```java
+String kor = h.get("apple");
+```
+
+해시맵은 해시 함수를 이용하여 저장 위치를 자동으로 결정하므로, 사용자는 데이터가 실제로 어디에 저장되는지 알 필요가 없다.  
+또한 요소가 삽입된 순서와 실제 저장 위치는 서로 관계가 없다.
+
+### 2. HashMap의 장단점
+
+#### 장점
+
+- 요소의 삽입 속도가 빠르다.
+- 요소의 삭제 속도가 빠르다.
+- 키를 이용한 검색 속도가 매우 빠르다.
+- 데이터 개수가 많아도 효율적으로 검색할 수 있다.
+
+#### 단점
+
+- 인덱스를 이용하여 접근할 수 없다.
+- 반드시 키(Key)를 이용해야 값을 검색할 수 있다.
+- 저장 순서가 유지되지 않는다.
+
+따라서 HashMap은 **빠른 삽입과 검색이 필요한 응용 프로그램**에 적합하다.
+
+### 3. HashMap의 주요 메소드
+
+| 메소드                                | 설명                           |
+| ------------------------------------- | ------------------------------ |
+| `void clear()`                        | 해시맵의 모든 요소 삭제        |
+| `boolean containsKey(Object key)`     | 지정한 키가 존재하면 true 반환 |
+| `boolean containsValue(Object value)` | 지정한 값이 존재하면 true 반환 |
+| `V get(Object key)`                   | 키에 대응하는 값 반환          |
+| `boolean isEmpty()`                   | 비어 있으면 true 반환          |
+| `Set<K> keySet()`                     | 모든 키를 Set 컬렉션으로 반환  |
+| `V put(K key, V value)`               | 키와 값 저장                   |
+| `V remove(Object key)`                | 키와 값 삭제                   |
+| `int size()`                          | 저장된 요소 개수 반환          |
+
+### 4. HashMap 생성
+
+HashMap은 키와 값의 타입을 지정하여 생성한다.  
+다음은 영어 단어와 한글 뜻을 저장하는 해시맵이다.
+
+```java
+HashMap<String, String> h = new HashMap<String, String>();
+```
+
+### 5. HashMap에 요소 삽입
+
+`put()` 메소드를 사용하여 키와 값을 저장한다.
+
+```java
+h.put("baby", "아기");
+h.put("love", "사랑");
+h.put("apple", "사과");
+```
+
+### 6. 키(Key)로 값(Value) 검색
+
+`get()` 메소드에 키를 전달하면 해당 값을 얻을 수 있다.
+
+```java
+String kor = h.get("love");
+```
+
+실행 결과
+
+```text
+사랑
+```
+
+존재하지 않는 키를 검색하면 `null`이 반환된다.
+
+```java
+String kor = h.get("babo");
+```
+
+### 7. 키(Key)로 요소 삭제
+
+`remove()` 메소드를 사용하여 요소를 삭제할 수 있다.
+
+```java
+h.remove("apple");
+```
+
+이 코드는 키가 `"apple"`인 요소를 삭제한다.
+
+### 8. 요소 개수 알아내기
+
+해시맵에 저장된 요소의 개수는 `size()` 메소드로 확인한다.
+
+```java
+int n = h.size();
+```
+
+### 9. HashMap 전체 검색
+
+해시맵에 저장된 모든 데이터를 출력하려면 먼저 `keySet()`을 이용해 모든 키를 얻은 후, Iterator를 사용하여 순차적으로 접근한다.
+
+```java
+Set<String> keys = h.keySet();
+Iterator<String> it = keys.iterator();
+while(it.hasNext()) {
+    String key = it.next();
+    String value = h.get(key);
+    System.out.println("(" + key + ", " + value + ")");
+}
+```
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기:
+  - [HashMapDicEx.java](./.src/HashMapDicEx.java)
+  - [HashMapScoreEx.java](./.src/HashMapScoreEx.java)
+  - [HashMapStudentInfoEx.java](./.src/HashMapStudentInfoEx.java)
