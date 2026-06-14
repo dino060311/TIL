@@ -725,3 +725,36 @@ while(it.hasNext()) {
   - [HashMapDicEx.java](./.src/HashMapDicEx.java)
   - [HashMapScoreEx.java](./.src/HashMapScoreEx.java)
   - [HashMapStudentInfoEx.java](./.src/HashMapStudentInfoEx.java)
+
+---
+
+# 📅 2026-06-14 (제네릭 컬렉션 활용)
+
+## ✅ 배운 내용
+
+### 1. LinkedList<E>
+
+`LinkedList<E>`는 `List<E>` 인터페이스를 구현한 컬렉션 클래스로, 경로명은 `java.util.LinkedList`이다.
+
+LinkedList는 요소들을 **양방향 연결 리스트(Double Linked List)** 구조로 관리한다.  
+각 요소는 자신의 앞 요소와 뒤 요소에 대한 정보를 가지고 있어 요소 간의 연결을 통해 데이터를 관리한다.
+
+LinkedList는 맨 앞 요소를 가리키는 `head`와 맨 뒤 요소를 가리키는 `tail`을 가지고 있으며, 맨 앞, 맨 뒤, 중간 위치에 요소를 삽입하거나 삭제할 수 있다.
+
+또한 인덱스를 이용하여 요소에 접근할 수도 있다.
+
+### 2. Collections 클래스 활용
+
+`java.util` 패키지에 포함된 `Collections` 클래스는 컬렉션을 다루는 유용한 여러 메소드를 지원한다.
+
+- `sort()` : 컬렉션에 포함된 요소 정렬
+- `reverse()` : 요소를 반대 순으로 정렬
+- `max()`, `min()` : 요소들의 최댓값과 최솟값 찾기
+- `binarySearch()` : 이진 검색
+
+Collections 클래스의 메소드는 모두 `static` 타입이므로 Collections 객체를 생성할 필요가 없다.  
+이 유틸리티 메소드들은 인자로 컬렉션 객체를 전달받아 처리한다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [CollectionsEx.java](./.src/CollectionsEx.java)
