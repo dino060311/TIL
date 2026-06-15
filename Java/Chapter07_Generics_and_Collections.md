@@ -758,3 +758,123 @@ Collections 클래스의 메소드는 모두 `static` 타입이므로 Collection
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [CollectionsEx.java](./.src/CollectionsEx.java)
+
+---
+
+# 📅 2026-06-15 (제네릭 만들기)
+
+## ✅ 배운 내용
+
+### 1. 제네릭 클래스
+
+제네릭 클래스(Generic Class)를 작성하는 방법은 일반 클래스 작성 방법과 거의 동일하다.  
+다만 클래스 이름 뒤에 일반화된 타입(Generic Type)을 나타내는 타입 매개변수를 `< >` 사이에 선언한다는 점이 다르다.
+
+#### 제네릭 클래스 작성
+
+타입 매개변수 `T`를 가진 제네릭 클래스 `MyClass`는 다음과 같이 작성한다.
+
+```java
+public class MyClass<T> {
+    T val;
+    void set(T a) {
+        val = a;
+    }
+    T get() {
+        return val;
+    }
+}
+```
+
+#### 제네릭 클래스에 대한 레퍼런스 변수 선언
+
+제네릭 클래스의 레퍼런스 변수를 선언할 때는 타입 매개변수에 구체적인 타입을 지정한다.
+
+```java
+MyClass<String> s;
+List<Integer> li;
+Vector<String> vs;
+```
+
+위 코드는 각각 문자열, 정수, 문자열만 다룰 수 있는 객체를 의미한다.
+
+#### 제네릭 객체 생성 - 구체화(specialization)
+
+제네릭 클래스에 구체적인 타입을 지정하여 객체를 생성하는 과정을 **구체화(Specialization)** 라고 한다.
+
+다음은 `MyClass<T>`의 `T`에 각각 `String`과 `Integer`를 지정하여 객체를 생성한 예이다.
+
+```java
+Myclass<String> s = new Myclass<String>();
+s.set("hello");
+System.out.println(s.get());
+
+Myclass<Integer> n = new MyClass<Integer>();
+n.set(5);
+System.out.println(n.get());
+```
+
+위 코드에서
+
+- `MyClass<String>` → 문자열만 다루는 클래스
+- `MyClass<Integer>` → 정수만 다루는 클래스
+
+로 구체화된다.
+
+예를 들어 `MyClass<String>`은 컴파일 과정에서 다음과 같은 형태로 생각할 수 있다.
+
+```java
+public class MyClass<String> {
+    String val;
+    void set(String a) {
+        val = a;
+    }
+    String get() {
+        return val;
+    }
+}
+```
+
+#### 제네릭과 기본 타입
+
+제네릭의 타입 매개변수에는 기본 타입을 사용할 수 없다.
+
+다음 코드는 컴파일 오류가 발생한다.
+
+```java
+Vector<int> vi = new Vector<int>();
+```
+
+기본 타입 대신 Wrapper 클래스를 사용해야 한다.
+
+```java
+Vector<Integer> vi = new Vector<Integer>();
+```
+
+#### 타입 매개변수
+
+제네릭 클래스 내부에서는 제네릭 타입의 객체를 직접 생성할 수 없다.
+
+예를 들어 다음 코드는 허용되지 않는다.
+
+```java
+public class MyVector<E> {
+    E create() {
+        E a = new E(); // 컴파일 오류.
+        return a;
+    }
+}
+```
+
+컴파일러는 `new E()`를 컴파일하는 시점에 E가 어떤 타입으로 구체화될지 알 수 없기 때문이다.
+
+따라서
+
+- 어떤 생성자를 호출해야 하는지 알 수 없고
+- 얼마만큼의 메모리를 할당해야 하는지도 알 수 없다.
+
+이러한 이유로 제네릭 타입의 객체 생성은 허용되지 않는다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [MyStack.java](./.src/MyStack.java)
