@@ -13,7 +13,7 @@ class GStack<T> {
         stck[tos] = item;
         tos++;
     }
-
+    @SuppressWarnings("unchecked")
     public T pop() {
         if (tos == 0)
             return null;
