@@ -878,3 +878,86 @@ public class MyVector<E> {
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [MyStack.java](./.src/MyStack.java)
+
+---
+
+# 📅 2026-06-15 (제네릭 만들기)
+
+## ✅ 배운 내용
+
+### 1. 제네릭과 배열
+
+제네릭에서는 배열 사용에 대한 몇 가지 제한이 있다.  
+제네릭 클래스 또는 인터페이스 타입의 배열 객체는 생성할 수 없다.
+
+```java
+GStack<Integer>[] gs = new GStack<Integer>[10];
+```
+
+위 코드는 컴파일 오류가 발생한다.  
+반면, 제네릭 타입의 배열을 매개변수로 선언하는 것은 허용된다.
+
+```java
+public void myArray(T[] a) {
+    ...
+}
+```
+
+즉, 제네릭 타입의 배열 선언은 가능하지만, 제네릭 타입의 배열 객체 생성은 허용되지 않는다.
+
+### 2. 제네릭 메소드
+
+클래스 전체가 아닌 일부 메소드만 제네릭으로 구현할 수도 있다.
+
+다음은 `toStack()` 메소드를 제네릭 메소드로 작성한 예이다.
+
+```jaava
+class GenericMethodEx {
+    Static <T> void toStack(T[] a, GStack<T> gs) {
+        for (int i = 0; i < a.length; i++) {
+            gs.push(a[i]);
+        }
+    }
+}
+```
+
+타입 매개변수는 메소드의 리턴 타입 앞에 선언한다.
+
+위 코드에서
+
+```java
+<T>
+```
+
+부분이 타입 매개변수 선언이다.
+
+제네릭 메소드를 호출할 때는 컴파일러가 전달된 인자를 통해 타입을 추론할 수 있으므로, 제네릭 클래스와 달리 타입을 직접 명시하지 않아도 된다.
+
+다음 코드는 컴파일러가 타입 매개변수 `T`를 `Object`로 추론하는 예이다.
+
+```java
+Object[] oArray = new Object[100];
+GStack<Object> objectStack = new GStack<Object>();
+GenericMethodEx.toStack(oArray, objectStack);
+```
+
+다음 코드는 타입 매개변수 `T`를 `String`으로 추론하는 경우이다.
+
+```java
+String[] sArray = new String[100];
+GStack<String> stringStack = new GStack<String>();
+GenericMethodEx.toStack(sArray, stringStack);
+```
+
+다음 경우에는 타입 매개변수 `T`를 `Object`로 추론한다.
+
+```java
+GenericMethodEx.toStack(sArray, objectStack);
+```
+
+여기서 `sArray`는 `String[]` 타입이고, `objectStack`은 `GStack<Object>` 타입이다.  
+`Object`가 `String`의 상위 클래스(super class)이므로 컴파일러는 타입 매개변수 `T`를 `Object`로 추론한다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [GenericMethodEx.java](./.src/GenericMethodEx.java)
