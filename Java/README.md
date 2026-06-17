@@ -16,7 +16,7 @@
 | **Ch.04** | 클래스와 객체                        |  ✅  | [상세 보기](./Chapter04_Class_and_Object.md)        |
 | **Ch.05** | 상속                                 |  ✅  | [상세 보기](./Chapter05_Inheritance.md)             |
 | **Ch.06** | 모듈과 패키지 개념, 자바 기본 패키지 |  ✅  | [상세 보기](./Chapter06_Modules_and_Packages.md)    |
-| **Ch.07** | 제네릭과 컬렉션 |  📚  | [상세 보기](./Chapter07_Generics_and_Collections.md)    |
+| **Ch.07** | 제네릭과 컬렉션 |  ✅  | [상세 보기](./Chapter07_Generics_and_Collections.md)    |
 
 ---
 
