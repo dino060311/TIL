@@ -17,6 +17,7 @@
 | **Ch.05** | 상속                                 |  ✅  | [상세 보기](./Chapter05_Inheritance.md)             |
 | **Ch.06** | 모듈과 패키지 개념, 자바 기본 패키지 |  ✅  | [상세 보기](./Chapter06_Modules_and_Packages.md)    |
 | **Ch.07** | 제네릭과 컬렉션 |  ✅  | [상세 보기](./Chapter07_Generics_and_Collections.md)    |
+| **Ch.08** | 입출력 스트림과 파일 입출 |  📚  | [상세 보기](./Chapter08_Input_Streams_and_File_IO)    |
 
 ---
 
