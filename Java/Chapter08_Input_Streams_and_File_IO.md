@@ -155,13 +155,13 @@ fin.close();
 
 ### FileReader 주요 메소드
 
-| 메소드                                    | 설명                                                                                |
-| ----------------------------------------- | ----------------------------------------------------------------------------------- |
-| `int read()`                              | 한 개의 문자를 읽어 정수형으로 리턴                                                 |
-| `int read(char[] cbuf)`                   | 문자들을 읽어 cbuf 배열에 저장하고 읽은 개수 리턴                                   |
-| `int read(char[] cbuf, int off, int len)` | 최대 len개의 문자를 읽어 cbuf 배열의 off 위치부터 저장하고 실제 읽은 개수 리턴      |
-| `String getEncoding()`                    | 스트림이 사용하는 문자 집합의 이름 리턴                                             |
-| `void close()`                            | 입력 스트림을 닫고 관련된 시스템 자원 해제                                          |
+| 메소드                                    | 설명                                                                           |
+| ----------------------------------------- | ------------------------------------------------------------------------------ |
+| `int read()`                              | 한 개의 문자를 읽어 정수형으로 리턴                                            |
+| `int read(char[] cbuf)`                   | 문자들을 읽어 cbuf 배열에 저장하고 읽은 개수 리턴                              |
+| `int read(char[] cbuf, int off, int len)` | 최대 len개의 문자를 읽어 cbuf 배열의 off 위치부터 저장하고 실제 읽은 개수 리턴 |
+| `String getEncoding()`                    | 스트림이 사용하는 문자 집합의 이름 리턴                                        |
+| `void close()`                            | 입력 스트림을 닫고 관련된 시스템 자원 해제                                     |
 
 ### 3. 파일 입출력과 예외 처리
 
@@ -204,3 +204,67 @@ catch (IOException e) {
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [FileReaderEx.java](./.src/FileReaderEx.java)
+
+---
+
+# 📅 2026-06-20 (자바의 입출력 스트림)
+
+## ✅ 배운 내용
+
+### 1. 문자 집합과 InputStreamReader를 이용한 텍스트 파일 읽기
+
+`InputStreamReader`는 입력되는 바이트 데이터를 문자 집합(Character Set)을 이용해 문자로 변환하는 문자 입력 스트림이다.  
+따라서 `InputStreamReader`를 생성할 때는 바이트 데이터를 어떤 문자 집합으로 해석할 것인지 지정해야 한다.  
+만약 파일의 실제 인코딩과 지정한 문자 집합이 다르면 한글이 깨지거나 올바르게 해석되지 않을 수 있다.
+
+### InputStreamReader 생성자
+
+| 생성자                                                  | 설명                                                           |
+| ------------------------------------------------------- | -------------------------------------------------------------- |
+| `InputStreamReader(InputStream in)`                     | in으로부터 읽는 기본 문자 집합의 InputStreamReader 생성        |
+| `InputStreamReader(InputStream in, Charset cs)`         | in으로부터 읽는 cs 문자 집합의 InputStreamReader 생성          |
+| `InputStreamReader(InputStream in, String charsetName)` | in으로부터 읽는 charsetName 문자 집합의 InputStreamReader 생성 |
+
+### 2. InputStreamReader로 문자 입력 스트림 생성
+
+`InputStreamReader`는 바이트 스트림을 전달받아 문자 정보로 변환하는 스트림 객체이다.  
+그러므로 텍스트 파일을 읽기 위해서는 먼저 바이트 파일 입력 스트림을 생성한다.
+
+```java
+FileInputStream fin = new FileInputStream("c:\\Temp\\hangul.txt");
+```
+
+`c:\Temp\hangul.txt`는 한글이 저장된 텍스트 파일이다.  
+그 다음 `InputStreamReader` 객체를 생성한다.
+
+```java
+InputStreamReader in = new InputStreamReader(fin, "MS949");
+```
+
+생성자의 두 번째 매개변수에는 파일의 문자 집합을 지정한다.  
+윈도우 메모장에서 저장한 한글 텍스트 파일은 기본적으로 MS949(CP949) 문자 집합을 사용하는 경우가 많다.  
+따라서 파일이 MS949로 저장되어 있다면 위와 같이 `"MS949"`를 지정하여 읽을 수 있다.  
+반면 UTF-8로 저장된 파일이라면 다음과 같이 UTF-8을 지정해야 한다.
+
+```java
+InputStreamReader in = new InputStreamReader(fin, "UTF-8");
+```
+
+### 3. 파일 읽기
+
+`in.read()`는 문자 집합의 인코딩 규칙에 따라 필요한 바이트를 읽고, 이를 문자로 변환하여 리턴한다.
+
+```java
+int c;
+
+while((c = in.read()) != -1) {
+    System.out.print((char)c);
+}
+```
+
+파일의 끝(EOF)에 도달하면 `-1`을 리턴한다.  
+만약 파일의 실제 인코딩과 `InputStreamReader`에 지정한 문자 집합이 다르면 한글이 깨져 출력될 수 있다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [FileReadHangulSuccess.java](./.src/FileReadHangulSuccess.java)
