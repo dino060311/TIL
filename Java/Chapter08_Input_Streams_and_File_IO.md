@@ -268,3 +268,104 @@ while((c = in.read()) != -1) {
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [FileReadHangulSuccess.java](./.src/FileReadHangulSuccess.java)
+
+---
+
+# 📅 2026-06-21 (자바의 입출력 스트림)
+
+## ✅ 배운 내용
+
+### 1. FileWriter를 이용한 텍스트 파일 쓰기
+
+`FileWriter`는 문자 단위로 데이터를 파일에 저장하는 문자 출력 스트림 클래스이다.  
+텍스트 파일에 문자열이나 문자를 저장할 때 사용하며, `java.io` 패키지에 포함되어 있다.
+
+#### 파일 출력 스트림 생성
+
+텍스트 파일에 데이터를 저장하기 위해 먼저 `FileWriter` 객체를 생성해야 한다.  
+다음 코드는 `c:\Temp\test.txt` 파일과 연결된 출력 스트림을 생성한다.
+
+```java
+FileWriter fout = new FileWriter("c:\\Temp\\test.txt");
+```
+
+`FileWriter` 생성자는 지정한 파일을 열고 스트림과 연결한다.
+
+- 파일이 존재하지 않으면 새로 생성한다.
+- 파일이 이미 존재하면 기존 내용을 삭제한 후 처음부터 다시 쓴다.
+
+#### 파일 쓰기
+
+`write()` 메소드를 사용하면 문자나 문자열을 파일에 저장할 수 있다.
+
+##### 문자 하나 저장
+
+```java
+fout.write('A');
+```
+
+문자 `'A'`를 파일에 저장한다.
+
+##### 문자열 저장
+
+```java
+fout.write("Hello Java");
+```
+
+문자열 전체를 파일에 저장한다.
+
+##### 문자열 일부 저장
+
+```java
+fout.write("Hello Java", 0, 5);
+```
+
+인덱스 0부터 5개의 문자만 저장한다.
+
+##### 문자 배열 저장
+
+```java
+char[] buf = new char[1024];
+fout.write(buf, 0, buf.length);
+```
+
+배열의 데이터를 한 번에 저장할 수 있다.  
+버퍼를 이용하면 문자 하나씩 저장하는 것보다 효율적으로 파일을 기록할 수 있다.
+
+#### 스트림 닫기
+
+파일 저장이 끝나면 반드시 `close()`를 호출하여 스트림을 닫아야 한다.
+
+```java
+fout.close();
+```
+
+스트림을 닫으면 연결된 파일도 함께 닫히며, 남아 있는 데이터가 모두 저장된다.
+
+#### FileWriter 생성자
+
+| 생성자                                                     | 설명                                                    |
+| ---------------------------------------------------------- | ------------------------------------------------------- |
+| `OutputStreamWriter(OutputStream out)`                     | out에 출력하는 기본 문자 집합의 OutputStreamWriter 생성 |
+| `OutputStreamWriter(OutputStream out, Charset cs)`         | out에 출력하는 cs 문자 집합의 OutputStreamWriter 생성   |
+| `OutputStreamWriter(OutputStream out, String charsetName)` | charsetName 문자 집합의 OutputStreamWriter 생성         |
+| `FileWriter(File file)`                                    | file에 데이터를 저장할 FileWriter 생성                  |
+| `FileWriter(String name)`                                  | name 파일에 데이터를 저장할 FileWriter 생성             |
+| `FileWriter(File file, boolean append)`                    | append가 true이면 파일 끝에 이어서 저장                 |
+| `FileWriter(String name, boolean append)`                  | append가 true이면 파일 끝에 이어서 저장                 |
+
+#### FileWriter 주요 메소드
+
+| 메소드                                      | 설명                                  |
+| ------------------------------------------- | ------------------------------------- |
+| `void write(int c)`                         | c를 char로 변환하여 한 개의 문자 출력 |
+| `void write(String str)`                    | 문자열 출력                           |
+| `void write(String str, int off, int len)`  | 문자열의 일부 출력                    |
+| `void write(char[] cbuf, int off, int len)` | 문자 배열의 일부 출력                 |
+| `void flush()`                              | 버퍼에 남아 있는 데이터를 모두 출력   |
+| `String getEncoding()`                      | 스트림이 사용하는 문자 집합 이름 반환 |
+| `void close()`                              | 스트림을 닫고 관련 시스템 자원 해제   |
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [FileWriterEx.java](./.src/FileWriterEx.java)
