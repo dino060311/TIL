@@ -369,3 +369,90 @@ fout.close();
 ## 💻 실습 코드
 
 - 실습 파일 바로가기: [FileWriterEx.java](./.src/FileWriterEx.java)
+
+---
+
+# 📅 2026-06-23 (바이트 스트림과 파일 입출력)
+
+## ✅ 배운 내용
+
+### 1. 바이트 스트림 클래스
+
+바이트 스트림은 바이트 단위로 바이너리 데이터가 흐르는 스트림이다.  
+바이트 스트림은 바이너리 데이터를 있는 그대로 입출력하기 때문에 이미지, 오디오, 동영상과 같은 파일을 처리할 때 필수적으로 사용된다. 또한 문자들로 구성된 텍스트 파일도 입출력할 수 있다.  
+대표적인 바이트 스트림 클래스는 다음과 같다.
+
+#### InputStream/OutputStream
+
+추상 클래스이며, 바이트 입출력을 위한 공통 기능을 제공하는 슈퍼 클래스이다.
+
+#### FileInputStream/FileOutputStream
+
+파일 입출력을 위한 클래스로서, 파일로부터 바이너리 데이터를 읽거나 파일에 바이너리 데이터를 저장할 수 있다.
+
+#### DataInputStream/DataOutputStream
+
+`boolean`, `char`, `byte`, `short`, `int`, `long`, `float`, `double` 타입의 값을 바이너리 형태로 입출력할 수 있다.  
+문자열도 바이너리 형태로 저장하고 읽을 수 있다.
+
+### 2. FileOutputStream을 이용한 바이너리 파일 쓰기
+
+프로그램 내의 변수나 배열에 들어 있는 바이너리 값을 그대로 파일에 저장해야 하는 경우가 있다.  
+예를 들어 메모리에 있는 이미지 데이터를 이미지 파일로 저장하거나, 프로그램에서 생성한 바이트 배열을 그대로 파일에 저장할 때 사용한다.  
+바이너리 파일은 사람이 직접 읽고 해석하기 어렵다.  
+바이너리 데이터를 파일에 저장할 때는 `FileOutputStream` 클래스를 사용한다.
+
+### FileOutputStream 생성자
+
+| 생성자                                          | 설명                                                            |
+| ----------------------------------------------- | --------------------------------------------------------------- |
+| `FileOutputStream(File file)`                   | file이 지정하는 파일에 출력하는 FileOutputStream 생성           |
+| `FileOutputStream(String name)`                 | name이 지정하는 파일에 출력하는 FileOutputStream 생성           |
+| `FileOutputStream(File file, boolean append)`   | append가 true이면 file이 지정하는 파일의 마지막부터 데이터 저장 |
+| `FileOutputStream(String name, boolean append)` | append가 true이면 name이 지정하는 파일의 마지막부터 데이터 저장 |
+
+### FileOutputStream 주요 메소드
+
+| 메소드                                   | 설명                                                |
+| ---------------------------------------- | --------------------------------------------------- |
+| `void write(int b)`                      | int 형으로 전달된 한 바이트를 출력 스트림으로 출력  |
+| `void write(byte[] b)`                   | 배열 b의 바이트를 모두 출력 스트림으로 출력         |
+| `void write(byte[] b, int off, int len)` | 배열 b의 off 위치부터 len개의 바이트 출력           |
+| `void flush()`                           | 출력 스트림에 남아 있는 바이너리 데이터를 모두 출력 |
+| `void close()`                           | 출력 스트림을 닫고 관련된 시스템 자원 해제          |
+
+### 3. 파일 출력 스트림 생성
+
+`c:\Temp\test.out` 파일에 바이너리 데이터를 저장하는 출력 스트림은 다음과 같이 생성한다.
+
+```java
+FileOutputStream fout = new FileOutputStream("c:\\Temp\\test.out");
+```
+
+`FileOutputStream` 생성자는 파일과 출력 스트림을 연결한다.
+
+- 파일이 없으면 새로 생성한다.
+- 파일이 이미 존재하면 기존 내용을 삭제하고 처음부터 데이터를 기록한다.
+
+### 4. 파일 쓰기
+
+배열에 저장된 바이트 데이터를 파일에 기록할 수 있다.
+
+```java
+byte b[] = {7, 51, 3, 4, -1, 24};
+for(int i = 0; i < b.length; i++)
+    fout.write(b[i]);
+```
+
+위 코드는 배열의 각 바이트를 하나씩 파일에 저장한다.  
+반복문 없이 배열 전체를 한 번에 저장할 수도 있다.
+
+```java
+fout.write(b);
+```
+
+`write(byte[])` 메소드를 사용하면 배열의 모든 데이터를 한 번에 파일에 기록할 수 있다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기: [FileOutputStreamEx.java](./.src/FileOutputStreamEx.java)
