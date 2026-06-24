@@ -265,7 +265,7 @@ while((c = in.read()) != -1) {
 파일의 끝(EOF)에 도달하면 `-1`을 리턴한다.  
 만약 파일의 실제 인코딩과 `InputStreamReader`에 지정한 문자 집합이 다르면 한글이 깨져 출력될 수 있다.
 
-## 💻 실습 코드
+### 💻 실습 코드
 
 - 실습 파일 바로가기: [FileReadHangulSuccess.java](./.src/FileReadHangulSuccess.java)
 
@@ -366,7 +366,7 @@ fout.close();
 | `String getEncoding()`                      | 스트림이 사용하는 문자 집합 이름 반환 |
 | `void close()`                              | 스트림을 닫고 관련 시스템 자원 해제   |
 
-## 💻 실습 코드
+### 💻 실습 코드
 
 - 실습 파일 바로가기: [FileWriterEx.java](./.src/FileWriterEx.java)
 
@@ -453,6 +453,77 @@ fout.write(b);
 
 `write(byte[])` 메소드를 사용하면 배열의 모든 데이터를 한 번에 파일에 기록할 수 있다.
 
-## 💻 실습 코드
+### 💻 실습 코드
 
 - 실습 파일 바로가기: [FileOutputStreamEx.java](./.src/FileOutputStreamEx.java)
+
+---
+
+# 📅 2026-06-24 (바이트 스트림과 파일 입출력)
+
+## ✅ 배운 내용
+
+### 1. FileInputStream을 이용한 바이너리 파일 읽기
+
+`FileInputStream`은 파일로부터 바이트 단위의 데이터를 읽어오는 입력 스트림 클래스이다.  
+바이너리 파일을 읽을 때 사용하며, 이미지, 오디오, 동영상 파일뿐만 아니라 텍스트 파일도 읽을 수 있다.
+
+### FileInputStream 생성자 및 주요 메소드
+
+| 생성자 및 메소드                       | 설명                                                                                         |
+| -------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `FileInputStream(File file)`           | file이 지정하는 파일로부터 읽는 FileInputStream 생성                                         |
+| `FileInputStream(String name)`         | name이 지정하는 파일로부터 읽는 FileInputStream 생성                                         |
+| `int read()`                           | 입력 스트림에서 한 바이트를 읽어 int형으로 리턴                                              |
+| `int read(byte[] b)`                   | 최대 배열 b의 크기만큼 바이트를 읽음. EOF를 만나면 실제 읽은 바이트 수 리턴                  |
+| `int read(byte[] b, int off, int len)` | 최대 len개의 바이트를 읽어 b 배열의 off 위치부터 저장, EOF를 만나면 실제 읽은 바이트 수 리턴 |
+| `int available()`                      | 현재 읽을 수 있는 바이트 수 리턴                                                             |
+| `void close()`                         | 입력 스트림을 닫고 관련된 시스템 자원 해제                                                   |
+
+### 2. 파일 입력 스트림 생성
+
+FileInputStream 클래스는 파일과 연결된 바이트 입력 스트림을 생성한다.  
+다음은 `c:\Temp\test.out` 파일로부터 바이너리 데이터를 읽기 위한 스트림 생성 코드이다.
+
+```java
+FileInputStream fin = new FileInputStream("c:\\Temp\\test.out");
+```
+
+이 코드를 실행하면 `c:\Temp\test.out` 파일을 찾아 열고, 해당 파일과 연결된 입력 스트림 객체를 생성한다.
+
+#### 파일 읽기
+
+`read()` 메소드는 파일로부터 한 바이트를 읽어 리턴한다.  
+다음 코드는 파일에 저장된 바이트 데이터를 배열에 저장하는 예제이다.
+
+```java
+byte b[] = new byte[6];
+int n = 0, c;
+while((c = fin.read()) != -1) {
+    b[n] = (byte)c;
+    n++;
+}
+```
+
+파일의 끝(EOF)에 도달하면 `read()` 메소드는 `-1`을 리턴한다.  
+반복문을 사용하지 않고 배열 전체를 한 번에 읽어올 수도 있다.
+
+```java
+fin.read(b);
+```
+
+이 코드는 배열 `b`의 크기만큼 데이터를 읽어 배열에 저장한다.
+
+#### 스트림 닫기
+
+파일 읽기가 끝나면 `close()` 메소드를 호출하여 스트림을 닫는다.
+
+```java
+fin.close();
+```
+
+스트림을 닫으면 관련된 시스템 자원이 해제된다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [FileInputStreamEx.java](./.src/FileInputStreamEx.java)
