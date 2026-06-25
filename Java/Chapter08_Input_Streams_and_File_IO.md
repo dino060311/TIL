@@ -527,3 +527,98 @@ fin.close();
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [FileInputStreamEx.java](./.src/FileInputStreamEx.java)
+
+---
+
+# 📅 2026-06-25 (버퍼 입출력과 파일 입출력)
+
+## ✅ 배운 내용
+
+### 1. 버퍼 입출력의 필요성
+
+입출력 스트림은 운영체제 API를 호출하여 입출력 장치와 프로그램 사이에서 데이터를 전송한다.  
+파일에 데이터를 한 번 쓸 때마다 운영체제 API가 호출되면 하드 디스크나 네트워크 장치가 자주 동작하게 되어 시스템의 효율이 떨어지고 프로그램의 실행 속도도 느려질 수 있다.  
+이를 해결하기 위해 사용하는 것이 **버퍼(Buffer)** 이다.  
+버퍼는 데이터를 일시적으로 저장하는 메모리 공간으로, 데이터를 일정량 모은 후 한 번에 입출력을 수행하여 운영체제의 부담을 줄이고 입출력 성능을 향상시킨다.  
+이처럼 버퍼를 이용하여 데이터를 효율적으로 입출력하는 방식을 **버퍼 입출력(Buffer I/O)** 이라고 한다.
+
+버퍼 스트림은 데이터의 종류에 따라 다음과 같이 구분된다.
+
+- **바이트 버퍼 스트림**
+  - `BufferedInputStream`
+  - `BufferedOutputStream`
+- **문자 버퍼 스트림**
+  - `BufferedReader`
+  - `BufferedWriter`
+
+### 2. 버퍼 스트림 생성 및 활용
+
+버퍼 스트림은 일반 입출력 스트림과 사용 방법은 거의 동일하지만 내부에 버퍼를 가지고 있다는 차이가 있다.  
+버퍼 스트림은 반드시 기존의 입력 또는 출력 스트림과 연결하여 사용하며, 생성자에서 버퍼의 크기를 지정할 수 있다.
+
+### BufferedInputStream / BufferedOutputStream 생성자
+
+| 생성자                                             | 설명                                             |
+| -------------------------------------------------- | ------------------------------------------------ |
+| `BufferedInputStream(InputStream in)`              | in을 연결하는 기본 크기의 입력 버퍼 스트림 생성  |
+| `BufferedInputStream(InputStream in, int size)`    | in을 연결하는 size 크기의 입력 버퍼 스트림 생성  |
+| `BufferedOutputStream(OutputStream out)`           | out을 연결하는 기본 크기의 출력 버퍼 스트림 생성 |
+| `BufferedOutputStream(OutputStream out, int size)` | out을 연결하는 size 크기의 출력 버퍼 스트림 생성 |
+
+### BufferedReader / BufferedWriter 생성자
+
+| 생성자                               | 설명                                                  |
+| ------------------------------------ | ----------------------------------------------------- |
+| `BufferedReader(Reader in)`          | in을 연결하는 기본 크기의 문자 입력 버퍼 스트림 생성  |
+| `BufferedReader(Reader in, int sz)`  | in을 연결하는 sz 크기의 문자 입력 버퍼 스트림 생성    |
+| `BufferedWriter(Writer out)`         | out을 연결하는 기본 크기의 문자 출력 버퍼 스트림 생성 |
+| `BufferedWriter(Writer out, int sz)` | out을 연결하는 sz 크기의 문자 출력 버퍼 스트림 생성   |
+
+#### 버퍼 출력 스트림 생성
+
+다음 코드는 버퍼 크기가 20바이트인 `BufferedOutputStream`을 생성하여 표준 출력 스트림(`System.out`)과 연결하는 예제이다.
+
+```java
+BufferedOutputStream bout = new BufferedOutputStream(System.out, 20);
+```
+
+버퍼가 가득 차면 데이터를 한 번에 화면으로 출력한다.
+
+#### 스트림 출력
+
+다음은 `c:\windows\system.ini` 파일을 읽어 버퍼 출력 스트림을 통해 화면에 출력하는 코드이다.
+
+```java
+FileReader fin = new FileReader("c:\\windows\\system.ini");
+int c;
+while((c = fin.read()) != -1) {
+    bout.write((char)c);
+}
+```
+
+`FileReader`가 파일을 읽고, `BufferedOutputStream`이 데이터를 버퍼에 저장한 후 일정량이 모이면 한 번에 출력한다.
+
+#### 버퍼에 남아 있는 데이터 출력
+
+버퍼 스트림은 버퍼가 가득 찼을 때 자동으로 출력한다.  
+따라서 버퍼가 가득 차지 않은 상태에서는 출력되지 않은 데이터가 버퍼에 남아 있을 수 있다.  
+이때 `flush()` 메소드를 호출하면 버퍼에 남아 있는 데이터를 강제로 출력할 수 있다.
+
+```java
+bout.flush();
+```
+
+#### 스트림 닫기
+
+버퍼 스트림 사용이 끝나면 `close()`를 호출하여 스트림을 닫는다.
+
+```java
+bout.close();
+fin.close();
+```
+
+스트림을 닫으면 관련된 시스템 자원이 함께 해제된다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [BufferedIOEx.java](./.src/BufferedIOEx.java)
