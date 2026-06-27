@@ -622,3 +622,117 @@ fin.close();
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [BufferedIOEx.java](./.src/BufferedIOEx.java)
+
+---
+
+# 📅 2026-06-27 (File 클래스)
+
+## ✅ 배운 내용
+
+### 1. File 클래스란?
+
+`File` 클래스는 파일이나 디렉터리의 **경로명, 크기, 타입, 수정 날짜** 등의 속성 정보를 제공하며, 파일 삭제, 디렉터리 생성, 파일 이름 변경, 디렉터리 내의 파일 목록 조회 등 다양한 파일 관리 작업을 지원한다.  
+`File` 클래스의 경로명은 `java.io.File`이다.  
+이름과는 달리 `File` 클래스에는 **파일 입출력 기능은 없다.**  
+파일을 읽고 쓰는 작업은 앞에서 배운 `FileInputStream`, `FileOutputStream`, `FileReader`, `FileWriter` 등의 입출력 스트림 클래스를 사용해야 한다.
+
+### 2. File 객체 생성
+
+`File` 객체는 다음과 같은 생성자를 이용하여 생성한다.  
+예를 들어 `c:\Temp\test.txt` 파일을 나타내는 `File` 객체는 다음과 같이 생성할 수 있다.
+
+```java
+File f = new File("c:\\Temp\\test.txt");
+File f = new File("c:\\Temp", "test.txt");
+```
+
+| 생성자                              | 설명                                      |
+| ----------------------------------- | ----------------------------------------- |
+| `File(File parent, String child)`   | parent 디렉터리 아래 child 파일 객체 생성 |
+| `File(String pathname)`             | pathname 경로의 File 객체 생성            |
+| `File(String parent, String child)` | parent 경로 아래 child 파일 객체 생성     |
+| `File(URI uri)`                     | URI가 지정하는 File 객체 생성             |
+
+### 3. File 클래스를 이용한 파일 및 디렉터리 관리
+
+`File` 클래스의 메소드를 이용하면 파일 크기와 타입을 확인하고, 파일 삭제, 이름 변경, 디렉터리 생성, 디렉터리의 파일 목록 조회 등 다양한 파일 관리 작업을 수행할 수 있다.
+
+#### File 클래스의 주요 메소드
+
+| 메소드                        | 설명                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| `boolean mkdir()`             | 새로운 디렉터리 생성                                         |
+| `String[] list()`             | 디렉터리 내의 파일과 서브 디렉터리 목록을 문자열 배열로 반환 |
+| `File[] listFiles()`          | 디렉터리 내의 파일과 서브 디렉터리 목록을 File 배열로 반환   |
+| `boolean renameTo(File dest)` | dest가 지정하는 경로명으로 파일 또는 디렉터리 이름 변경      |
+| `boolean delete()`            | 파일 또는 디렉터리 삭제                                      |
+| `long length()`               | 파일의 크기 반환                                             |
+| `String getPath()`            | 전체 경로명을 문자열로 반환                                  |
+| `String getParent()`          | 부모 디렉터리의 경로 반환                                    |
+| `String getName()`            | 파일 또는 디렉터리 이름 반환                                 |
+| `boolean isFile()`            | 일반 파일이면 true 반환                                      |
+| `boolean isDirectory()`       | 디렉터리이면 true 반환                                       |
+| `long lastModified()`         | 마지막 수정 시간을 반환                                      |
+| `boolean exists()`            | 파일 또는 디렉터리가 존재하면 true 반환                      |
+
+#### 파일 크기, length()
+
+`length()`는 파일이나 디렉터리의 크기를 반환한다.
+
+```java
+File f = new File("c:\\windows\\system.ini");
+long size = f.length();
+```
+
+파일이 존재하지 않거나 디렉터리 또는 운영체제 종속적인 장치 파일인 경우에는 운영체제에 따라 `0`을 반환하기도 한다.
+
+#### 파일의 경로명, getName(), getPath(), getParent()
+
+- `getName()` : 파일명만 반환
+- `getPath()` : 전체 경로명 반환
+- `getParent()` : 부모 디렉터리 경로 반환
+
+```java
+String filename = f.getName();
+String path = f.getPath();
+String parent = f.getParent();
+```
+
+#### 파일 타입 판별, isFile()과 isDirectory()
+
+`isFile()`과 `isDirectory()`를 이용하여 파일인지 디렉터리인지 확인할 수 있다.
+
+```java
+if(f.isFile())
+    System.out.println(f.getPath() + "는 파일입니다.");
+else if(f.isDirectory())
+    System.out.println(f.getPath() + "는 디렉터리입니다.");
+```
+
+예를 들어 `system.ini`는 일반 파일이므로 다음과 같이 출력된다.
+
+```text
+c:\windows\system.ini는 파일입니다.
+```
+
+#### 디렉터리에 있는 파일 리스트 얻기, listFiles()
+
+`File` 객체가 디렉터리를 가리키는 경우 `listFiles()`를 이용하여 디렉터리 안에 있는 파일과 서브 디렉터리 목록을 가져올 수 있다.
+
+- `list()` : 파일 및 디렉터리 이름을 `String[]`으로 반환
+- `listFiles()` : 파일 및 디렉터리 정보를 `File[]`으로 반환
+
+다음은 `c:\Temp` 디렉터리의 모든 파일과 디렉터리 정보를 출력하는 예제이다.
+
+```java
+File f = new File("c:\\Temp");
+File[] subFiles = f.listFiles();
+for(int i = 0; i < subFiles.length; i++) {
+    System.out.print(subFiles[i].getName());
+    System.out.println("\t파일 크기: " + subFiles[i].length());
+}
+```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [FileEx.java](./.src/FileEx.java)
