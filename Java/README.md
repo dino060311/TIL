@@ -8,16 +8,16 @@
 
 각 챕터의 상세 보기를 클릭하면 학습 일지와 트러블슈팅 기록으로 이동합니다.
 
-| 챕터      | 주제                                 | 상태 | 상세 링크                                           |
-| :-------- | :----------------------------------- | :--: | :-------------------------------------------------- |
+| 챕터      | 주제                                 | 상태 | 상세 링크                                             |
+| :-------- | :----------------------------------- | :--: | :---------------------------------------------------- |
 | **Ch.01** | 자바 시작                            |  ✅  |
-| **Ch.02** | 자바 기본 프로그래밍                 |  ✅  | [상세 보기](./Chapter02_Java_Basics.md)             |
-| **Ch.03** | 반복문과 배열 그리고 예외 처리       |  ✅  | [상세 보기](./Chapter03_Loops_Arrays_Exceptions.md) |
-| **Ch.04** | 클래스와 객체                        |  ✅  | [상세 보기](./Chapter04_Class_and_Object.md)        |
-| **Ch.05** | 상속                                 |  ✅  | [상세 보기](./Chapter05_Inheritance.md)             |
-| **Ch.06** | 모듈과 패키지 개념, 자바 기본 패키지 |  ✅  | [상세 보기](./Chapter06_Modules_and_Packages.md)    |
-| **Ch.07** | 제네릭과 컬렉션 |  ✅  | [상세 보기](./Chapter07_Generics_and_Collections.md)    |
-| **Ch.08** | 입출력 스트림과 파일 입출 |  📚  | [상세 보기](./Chapter08_Input_Streams_and_File_IO.md)    |
+| **Ch.02** | 자바 기본 프로그래밍                 |  ✅  | [상세 보기](./Chapter02_Java_Basics.md)               |
+| **Ch.03** | 반복문과 배열 그리고 예외 처리       |  ✅  | [상세 보기](./Chapter03_Loops_Arrays_Exceptions.md)   |
+| **Ch.04** | 클래스와 객체                        |  ✅  | [상세 보기](./Chapter04_Class_and_Object.md)          |
+| **Ch.05** | 상속                                 |  ✅  | [상세 보기](./Chapter05_Inheritance.md)               |
+| **Ch.06** | 모듈과 패키지 개념, 자바 기본 패키지 |  ✅  | [상세 보기](./Chapter06_Modules_and_Packages.md)      |
+| **Ch.07** | 제네릭과 컬렉션                      |  ✅  | [상세 보기](./Chapter07_Generics_and_Collections.md)  |
+| **Ch.08** | 입출력 스트림과 파일 입출력          |  ✅  | [상세 보기](./Chapter08_Input_Streams_and_File_IO.md) |
 
 ---
 
