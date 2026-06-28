@@ -736,3 +736,45 @@ for(int i = 0; i < subFiles.length; i++) {
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [FileEx.java](./.src/FileEx.java)
+
+---
+
+# 📅 2026-06-28 (파일 입출력 응용: 파일 복사)
+
+## ✅ 배운 내용
+
+파일은 **텍스트 파일(Text File)** 과 **바이너리 파일(Binary File)** 로 나눌 수 있다.
+
+- **텍스트 파일**은 문자로 이루어진 파일이며, 문자 스트림이나 바이트 스트림을 모두 사용할 수 있다.
+- **바이너리 파일**은 이미지, 오디오, 동영상 등 바이너리 데이터로 이루어진 파일이므로 반드시 바이트 스트림을 사용해야 한다.
+
+### 1. 텍스트 파일 복사
+
+문자 스트림을 이용하여 텍스트 파일을 복사할 수 있다.  
+`FileReader`를 이용하여 원본 파일을 읽고, `FileWriter`를 이용하여 새로운 파일에 내용을 그대로 저장한다.  
+파일의 경로는 `File` 객체를 이용하여 관리한다.  
+이 방법은 **텍스트 파일 복사에 적합**하며, 이미지 파일이나 실행 파일(`.exe`), 한글(`.hwp`), PPT 등의 바이너리 파일은 정상적으로 복사할 수 없다.
+
+### 2. 바이너리 파일 복사
+
+바이트 스트림을 이용하면 바이너리 파일을 그대로 복사할 수 있다.  
+`FileInputStream`으로 파일을 읽고, `FileOutputStream`으로 데이터를 그대로 저장한다.
+
+```java
+FileInputStream fi = new FileInputStream(src);
+FileOutputStream fo = new FileOutputStream(dest);
+```
+
+이 방법은 바이트 단위로 데이터를 복사하므로 이미지, 동영상, 실행 파일뿐 아니라 텍스트 파일도 복사할 수 있다.
+
+### 3. 블록 단위로 파일 고속 복사
+
+파일을 한 바이트씩 읽고 쓰면 입출력 횟수가 많아져 복사 시간이 오래 걸린다.  
+복사 속도를 높이기 위해서는 `BufferedInputStream`, `BufferedOutputStream`을 사용하거나, 바이트 배열(버퍼)을 이용하여 **블록 단위**로 읽고 쓰는 방법을 사용할 수 있다.
+
+## 💻 실습 코드
+
+- 실습 파일 바로가기:
+  - [TextCopyEx.java](./.src/TextCopyEx.java)
+  - [BinaryCopyEx.java](./.src/BinaryCopyEx.java)
+  - [BlockBinaryCopyEx.java](./.src/BlockBinaryCopyEx.java)
