@@ -9,8 +9,6 @@ GUI는 **Graphical User Interface**의 약자로, 이미지나 그래픽을 이�
 자바는 **AWT**와 **Swing** 패키지를 제공하여 다양한 GUI를 쉽게 구성할 수 있도록 지원한다.  
 일반적으로 GUI 응용프로그램과 콘솔 기반 응용프로그램은 작성 방식이 서로 다르다.
 
----
-
 ### 2. AWT와 Swing 패키지
 
 자바는 GUI 응용프로그램을 쉽게 작성할 수 있도록 다양한 GUI 컴포넌트(GUI Component)를 제공한다.  
@@ -50,8 +48,6 @@ Swing은 AWT를 기반으로 구현되었기 때문에 Swing을 사용하기 위
 AWT와 Swing 모두 GUI 응용프로그램을 개발할 수 있지만, 최근에는 대부분의 GUI 응용프로그램이 **Swing 기반**으로 작성된다.  
 Swing은 다양한 컴포넌트를 제공하고 운영체제에 관계없이 동일한 화면을 구성할 수 있기 때문에 일반적으로 AWT보다 많이 사용된다.
 
----
-
 ### 3. 스윙 기반의 GUI 응용프로그램 구성
 
 Swing 응용프로그램은 여러 컴포넌트를 조합하여 하나의 화면을 구성한다.
@@ -69,7 +65,3 @@ Swing 응용프로그램은 여러 컴포넌트를 조합하여 하나의 화면
 - `JSplitPane` : 화면 분할
 - `JList` : 목록 출력
 - `JScrollPane` : 스크롤 기능 제공
-
-### 💻 실습 코드
-
-- 실습 파일 바로가기: [FileInputStreamEx.java](./.src/FileInputStreamEx.java)
