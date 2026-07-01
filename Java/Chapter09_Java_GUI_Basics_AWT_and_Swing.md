@@ -121,3 +121,77 @@ JFrame, JPanel, JApplet, JDialog, JWindow
 Swing 응용프로그램은 `JFrame`과 같은 최상위 컨테이너를 기준으로 여러 컨테이너와 컴포넌트를 계층 구조로 배치하여 화면을 구성한다.  
 예를 들어 `JFrame` 안에 `JPanel`을 배치하고, 그 안에 다시 여러 개의 `JPanel`과 `JButton` 등의 컴포넌트를 추가할 수 있다.  
 이처럼 컨테이너와 컴포넌트는 **계층 구조**를 이루며, 컨테이너 안에 포함된 컴포넌트를 **자식 컴포넌트**라고 한다.
+
+---
+
+# 📅 2026-07-01 (스윙 GUI 프로그램 만들기)
+
+## ✅ 배운 내용
+
+### 1. 스윙 패키지 사용을 위한 import 문
+
+Swing 패키지를 사용하려면 스윙 컴포넌트 클래스가 포함된 `javax.swing` 패키지를 import해야 한다.
+
+```java
+import javax.swing.*;
+```
+
+대부분의 Swing 응용프로그램은 이벤트 처리와 그래픽 작업을 함께 사용하므로 다음과 같은 패키지도 자주 import한다.
+
+```java
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+```
+
+### 2. 스윙 프레임과 컨텐트팬
+
+스윙 프레임은 모든 Swing 컴포넌트를 담는 **최상위 컨테이너**이다.  
+스윙 프레임이 화면에 출력되면 프레임에 포함된 모든 컴포넌트도 함께 출력된다.  
+반대로 프레임이 종료되면 내부의 모든 컴포넌트도 함께 사라진다.  
+Swing에서 프레임 역할을 하는 클래스는 `JFrame`이다.  
+`JFrame` 객체는 크게 다음과 같은 영역으로 구성된다.
+
+- Frame(`java.awt.Frame`)
+- 메뉴바(Menu Bar)
+- 컨텐트팬(Content Pane)
+
+메뉴바는 메뉴를 배치하는 공간이며, **컨텐트팬은 메뉴를 제외한 모든 GUI 컴포넌트를 배치하는 공간**이다.  
+따라서 Swing 응용프로그램에서 화면에 표시할 버튼, 레이블 등의 컴포넌트는 모두 컨텐트팬에 추가해야 한다.
+
+### 3. 프레임 만들기, JFrame 클래스 상속
+
+스윙 응용프로그램의 프레임은 `JFrame` 클래스를 상속받아 만들 수 있다.
+
+```java
+public class MyFrame extends JFrame {
+    ...
+}
+```
+
+`MyFrame` 객체가 생성되면 하나의 스윙 프레임이 생성된다.  
+`main()` 메소드에서 객체를 생성하면 프레임이 화면에 출력된다.
+
+```java
+new MyFrame();
+```
+
+프레임의 제목과 크기, 화면 표시 여부는 생성자에서 설정한다.
+
+```java
+setTitle("300x300 스윙 프레임 만들기");
+setSize(300, 300);
+setVisible(true);
+```
+
+- `setTitle()` : 프레임 제목 설정
+- `setSize()` : 프레임 크기 설정
+- `setVisible(true)` : 프레임을 화면에 표시
+
+`setSize()`를 호출하지 않으면 프레임의 크기가 **0 × 0**이 되어 화면에 보이지 않는다.  
+또한 `setVisible(true)`를 호출하지 않으면 기본값이 `false`이므로 프레임이 화면에 출력되지 않는다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [MyFrame.java](./.src/MyFrame.java)
