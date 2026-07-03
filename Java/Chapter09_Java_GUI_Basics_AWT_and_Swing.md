@@ -195,3 +195,80 @@ setVisible(true);
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [MyFrame.java](./.src/MyFrame.java)
+
+---
+
+# 📅 2026-07-03 (스윙 GUI 프로그램 만들기)
+
+## ✅ 배운 내용
+
+### 1. 스윙 응용프로그램에서 main() 메소드의 기능과 위치
+
+스윙 응용프로그램에서 `main()` 메소드의 역할은 **최소한으로 유지하는 것이 좋다.**  
+`main()`에는 응용프로그램의 시작점으로서 프레임 객체를 생성하는 정도의 코드만 작성하고, 나머지 기능은 `JFrame`을 상속받은 프레임 클래스에서 구현하는 것이 일반적이다.  
+`main()` 메소드는 프레임 클래스 내부에 작성할 수도 있고, `main()`만을 담당하는 별도의 클래스를 만들어 작성할 수도 있다.  
+어떤 방법을 사용해도 기능상의 차이는 없으며, 규모가 작은 프로그램에서는 프레임 클래스 안에 `main()`을 작성하는 경우가 많다.
+
+### 2. 프레임에 컴포넌트 붙이기
+
+프레임은 GUI 응용프로그램을 구성하는 가장 바깥쪽 컨테이너이다.  
+Swing에서는 버튼, 레이블 등의 GUI 컴포넌트를 프레임의 **컨텐트팬(Content Pane)** 에 추가하여 화면을 구성한다.
+
+#### 타이틀 달기
+
+프레임의 제목은 `JFrame` 생성자나 `setTitle()` 메소드를 이용하여 설정할 수 있다.
+
+```java
+public MyFrame() {
+    super("타이틀문자열");
+    setTitle("타이틀문자열");
+}
+```
+
+설정한 제목은 프레임의 타이틀 바에 표시된다.
+
+#### 메뉴 붙이기
+
+메뉴를 만들기 위해서는 **메뉴바(MenuBar)** 를 생성한 후 메뉴(`JMenu`)와 메뉴 아이템(`JMenuItem`)을 추가한다.  
+생성한 메뉴바를 `JFrame`의 메뉴바 영역에 부착하면 화면에 메뉴가 출력된다.
+
+#### 컨텐트팬에 컴포넌트 달기
+
+Swing에서는 **컨텐트팬에만 컴포넌트를 추가할 수 있다.**  
+`JFrame` 객체가 생성될 때 컨텐트팬도 함께 생성되므로 `getContentPane()` 메소드를 이용하여 현재 컨텐트팬을 얻을 수 있다.  
+컨텐트팬의 자료형은 `Container`이다.
+
+```java
+public class MyFrame extends JFrame {
+    public MyFrame() {
+        Container contentPane = getContentPane();
+    }
+}
+```
+
+컨텐트팬은 컨테이너이므로 `add()` 메소드를 이용하여 컴포넌트를 추가한다.
+
+```java
+JButton button = new JButton("Click");
+contentPane.add(button);
+```
+
+컨텐트팬에 추가된 컴포넌트들은 프레임이 화면에 출력될 때 함께 표시된다.
+
+#### 컨텐트팬의 변경
+
+`JFrame`의 `setContentPane()` 메소드를 이용하면 기존 컨텐트팬을 새로운 컨테이너로 교체할 수 있다.  
+컨텐트팬은 `Container`를 상속받은 객체라면 어떤 컨테이너도 사용할 수 있다.  
+다음은 `JPanel`을 상속받은 `MyPanel`을 새로운 컨텐트팬으로 설정하는 예이다.
+
+```java
+class MyPanel extends JPanel {
+
+}
+
+frame.setContentPane(new MyPanel());
+```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [ContentPaneEx.java](./.src/ContentPaneEx.java)
