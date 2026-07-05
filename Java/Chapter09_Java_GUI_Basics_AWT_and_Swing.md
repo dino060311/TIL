@@ -304,3 +304,102 @@ setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 하지만 Swing에서는 `JFrame` 객체가 생성되면 **이벤트 처리 스레드(Event Dispatch Thread, EDT)** 가 자동으로 생성된다.  
 이 이벤트 처리 스레드는 키보드와 마우스 입력을 받아 각 컴포넌트에 이벤트를 전달하는 역할을 수행한다.  
 따라서 `main()` 메소드가 종료되더라도 이벤트 처리 스레드가 계속 실행되고 있기 때문에 프레임은 화면에 남아 사용자 입력을 계속 처리할 수 있다.
+
+---
+
+# 📅 2026-07-05 (컨테이너와 배치)
+
+## ✅ 배운 내용
+
+### 1. 컨테이너와 배치 개념
+
+컨테이너에 부착되는 컴포넌트의 위치와 크기는 **배치관리자(Layout Manager)** 에 의해 결정된다.
+
+AWT와 Swing의 컨테이너는 배치와 관련하여 다음과 같은 특징을 가진다.
+
+- 컨테이너마다 하나의 배치관리자가 존재한다.
+- 배치관리자는 컴포넌트가 컨테이너에 추가될 때 위치와 크기를 결정한다.
+- 컨테이너의 크기가 변경되면 배치관리자는 내부의 모든 컴포넌트의 위치와 크기를 다시 조정한다.
+
+### 2. 배치관리자의 종류
+
+자바는 여러 종류의 배치관리자를 제공하며, 대표적인 배치관리자는 `java.awt` 패키지에 포함되어 있다.
+
+```java
+import java.awt.*;
+```
+
+대표적인 배치관리자는 다음과 같다.
+
+#### FlowLayout
+
+`FlowLayout`은 컴포넌트를 **추가되는 순서대로 왼쪽에서 오른쪽으로 배치**한다.  
+오른쪽 공간이 부족하면 자동으로 다음 줄로 내려가 다시 왼쪽부터 배치한다.  
+컴포넌트의 크기는 화면에 적절한 크기로 자동 설정된다.
+
+
+#### BorderLayout
+
+`BorderLayout`은 컨테이너를 **동(EAST), 서(WEST), 남(SOUTH), 북(NORTH), 중앙(CENTER)** 의 5개 영역으로 나누어 컴포넌트를 배치한다.  
+컴포넌트를 추가할 때 영역을 지정해야 하며, 지정하지 않으면 기본적으로 `CENTER` 영역에 배치된다.  
+컴포넌트의 크기는 각 영역의 크기에 맞게 자동 조정된다.  
+컴포넌트의 크기는 영역의 크기에 맞추어 설정된다.
+
+#### GridLayout
+
+`GridLayout`은 컨테이너를 동일한 크기의 **행(Row)과 열(Column)** 로 나눈 후, 컴포넌트를 **왼쪽에서 오른쪽, 위에서 아래 순서**로 배치한다.  
+모든 컴포넌트는 동일한 크기로 표시된다.
+
+#### CardLayout
+
+`CardLayout`은 여러 장의 카드를 쌓아 놓은 것처럼 컴포넌트를 겹쳐 배치한다.  
+필요에 따라 원하는 카드만 화면에 표시할 수 있으며, 모든 컴포넌트의 크기는 컨테이너의 크기와 동일하게 설정된다.
+
+### 3. 컨테이너의 디폴트 배치관리자
+
+컨테이너가 생성되면 자동으로 기본 배치관리자가 설정된다.
+
+| 컨테이너 | 디폴트 배치관리자 |
+| -------- | ---------------- |
+| `Window`, `JWindow` | `BorderLayout` |
+| `Frame`, `JFrame` | `BorderLayout` |
+| `Dialog`, `JDialog` | `BorderLayout` |
+| `Panel`, `JPanel` | `FlowLayout` |
+| `Applet`, `JApplet` | `FlowLayout` |
+
+### 4. 컨테이너에 새로운 배치관리자 설정, setLayout() 메소드
+
+컨테이너에는 원하는 배치관리자를 자유롭게 설정할 수 있다.  
+이를 위해 `Container` 클래스의 `setLayout()` 메소드를 사용한다.
+
+```java
+container.setLayout(LayoutManager lm);
+```
+
+예를 들어 `JPanel`에 `BorderLayout`을 설정하려면 다음과 같이 작성한다.
+
+```java
+JPanel p = new JPanel();
+p.setLayout(new BorderLayout());
+```
+
+컨텐트팬의 배치관리자를 `FlowLayout`으로 변경하는 방법은 다음과 같다.
+
+```java
+Container contentPane = frame.getContentPane();
+contentPane.setLayout(new FlowLayout());
+```
+
+배치관리자를 설정할 때는 반드시 객체를 생성해야 하므로 `new`를 빠뜨리지 않도록 주의해야 한다.
+
+잘못된 예시는 다음과 같다.
+
+```java
+contentPane.setLayout(FlowLayout);   // 오류
+```
+
+올바른 코드는 다음과 같다.
+
+```java
+contentPane.setLayout(new FlowLayout());
+```
