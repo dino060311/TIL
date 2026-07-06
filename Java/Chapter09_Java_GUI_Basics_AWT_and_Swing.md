@@ -337,7 +337,6 @@ import java.awt.*;
 오른쪽 공간이 부족하면 자동으로 다음 줄로 내려가 다시 왼쪽부터 배치한다.  
 컴포넌트의 크기는 화면에 적절한 크기로 자동 설정된다.
 
-
 #### BorderLayout
 
 `BorderLayout`은 컨테이너를 **동(EAST), 서(WEST), 남(SOUTH), 북(NORTH), 중앙(CENTER)** 의 5개 영역으로 나누어 컴포넌트를 배치한다.  
@@ -359,13 +358,13 @@ import java.awt.*;
 
 컨테이너가 생성되면 자동으로 기본 배치관리자가 설정된다.
 
-| 컨테이너 | 디폴트 배치관리자 |
-| -------- | ---------------- |
-| `Window`, `JWindow` | `BorderLayout` |
-| `Frame`, `JFrame` | `BorderLayout` |
-| `Dialog`, `JDialog` | `BorderLayout` |
-| `Panel`, `JPanel` | `FlowLayout` |
-| `Applet`, `JApplet` | `FlowLayout` |
+| 컨테이너            | 디폴트 배치관리자 |
+| ------------------- | ----------------- |
+| `Window`, `JWindow` | `BorderLayout`    |
+| `Frame`, `JFrame`   | `BorderLayout`    |
+| `Dialog`, `JDialog` | `BorderLayout`    |
+| `Panel`, `JPanel`   | `FlowLayout`      |
+| `Applet`, `JApplet` | `FlowLayout`      |
 
 ### 4. 컨테이너에 새로운 배치관리자 설정, setLayout() 메소드
 
@@ -403,3 +402,57 @@ contentPane.setLayout(FlowLayout);   // 오류
 ```java
 contentPane.setLayout(new FlowLayout());
 ```
+
+---
+
+# 📅 2026-07-06 (FlowLayout 배치관리자)
+
+## ✅ 배운 내용
+
+### 1. 배치 방법
+
+`FlowLayout` 배치관리자를 사용하는 컨테이너에는 `add()` 메소드를 이용하여 컴포넌트를 추가한다.
+
+```java
+container.setLayout(new FlowLayout());
+container.add(new JButton("add"));
+container.add(new JButton("sub"));
+container.add(new JButton("mul"));
+container.add(new JButton("div"));
+container.add(new JButton("Calculate"));
+```
+
+`FlowLayout`은 컴포넌트를 **왼쪽에서 오른쪽으로 순서대로 배치**한다.  
+오른쪽에 더 이상 공간이 없으면 자동으로 다음 줄로 내려가 다시 왼쪽부터 배치한다.  
+또한 컨테이너의 크기가 변경되면 `FlowLayout`이 컴포넌트의 위치를 자동으로 다시 배치해 준다.
+
+### 2. FlowLayout의 생성자와 속성
+
+`FlowLayout`은 여러 생성자를 제공하며, 정렬 방식과 컴포넌트 사이의 간격을 지정할 수 있다.
+
+```java
+FlowLayout()
+FlowLayout(int align)
+FlowLayout(int align, int hGap, int vGap)
+```
+
+생성자의 매개변수는 다음과 같다.
+
+- `align` : 컴포넌트의 정렬 방식
+  - `FlowLayout.LEFT` : 왼쪽 정렬
+  - `FlowLayout.CENTER` : 가운데 정렬(기본값)
+  - `FlowLayout.RIGHT` : 오른쪽 정렬
+- `hGap` : 컴포넌트 사이의 가로 간격(기본값 5픽셀)
+- `vGap` : 컴포넌트 사이의 세로 간격(기본값 5픽셀)
+
+다음은 `FlowLayout` 생성자를 사용하는 예시이다.
+
+```java
+new FlowLayout();
+new FlowLayout(FlowLayout.LEFT);
+new FlowLayout(FlowLayout.LEFT, 10, 20);
+```
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [FlowLayoutEx.java](./.src/FlowLayoutEx.java)
