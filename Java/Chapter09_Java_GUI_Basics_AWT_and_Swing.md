@@ -456,3 +456,61 @@ new FlowLayout(FlowLayout.LEFT, 10, 20);
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [FlowLayoutEx.java](./.src/FlowLayoutEx.java)
+
+---
+
+# 📅 2026-07-07 (BorderLayout 배치관리자)
+
+## ✅ 배운 내용
+
+### 1. 배치 방법
+
+`BorderLayout`은 컨테이너를 **동(EAST), 서(WEST), 남(SOUTH), 북(NORTH), 중앙(CENTER)** 의 5개 영역으로 나누어 컴포넌트를 배치하는 배치관리자이다.  
+`BorderLayout`에서는 `add()` 메소드에 컴포넌트와 함께 배치할 위치를 반드시 지정해야 한다.
+
+```java
+container.setLayout(new BorderLayout());
+container.add(new JButton("div"), BorderLayout.WEST);
+container.add(new JButton("Calculate"), BorderLayout.CENTER);
+```
+
+각 영역은 다음과 같이 지정한다.
+
+| 위치 | 상수                  |
+| ---- | --------------------- |
+| 북   | `BorderLayout.NORTH`  |
+| 남   | `BorderLayout.SOUTH`  |
+| 동   | `BorderLayout.EAST`   |
+| 서   | `BorderLayout.WEST`   |
+| 중앙 | `BorderLayout.CENTER` |
+
+컨테이너의 크기가 변경되면 `BorderLayout`도 새로운 크기에 맞게 컴포넌트의 크기를 자동으로 다시 조정한다.  
+기본적으로 하나의 `BorderLayout` 컨테이너에는 **5개의 영역에 각각 하나의 컴포넌트만 배치할 수 있다.**  
+5개보다 많은 컴포넌트를 배치하려면 `JPanel`과 같은 다른 컨테이너를 각 영역에 추가한 뒤, 그 안에 여러 컴포넌트를 배치하면 된다.이곳에 컴포넌트들을 부착하면 된다.
+
+### 2. BorderLayout의 생성자와 속성
+
+`BorderLayout`은 컴포넌트 사이의 간격을 지정할 수 있는 생성자를 제공한다.
+
+```java
+BorderLayout()
+BorderLayout(int hGap, int vGap)
+```
+
+매개변수의 의미는 다음과 같다.
+
+- `hGap` : 좌우 컴포넌트 사이의 가로 간격(기본값 0픽셀)
+- `vGap` : 상하 컴포넌트 사이의 세로 간격(기본값 0픽셀)
+
+생성자를 사용하는 예시는 다음과 같다.
+
+```java
+new BorderLayout();
+new BorderLayout(30, 20);
+```
+
+`CENTER` 영역에만 컴포넌트를 추가하면 해당 컴포넌트는 컨테이너 전체 크기를 차지하여 배치된다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [BorderLayoutEx.java](./.src/BorderLayoutEx.java)
