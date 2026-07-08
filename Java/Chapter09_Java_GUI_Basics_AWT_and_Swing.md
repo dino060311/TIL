@@ -514,3 +514,53 @@ new BorderLayout(30, 20);
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [BorderLayoutEx.java](./.src/BorderLayoutEx.java)
+
+---
+
+# 📅 2026-07-08 (GridLayout 배치관리자)
+
+## ✅ 배운 내용
+
+### 1. 배치 방법
+
+`GridLayout`은 컨테이너를 **행(Row)과 열(Column)로 이루어진 격자(Grid)** 형태로 나누어 각 셀에 하나씩 컴포넌트를 배치하는 배치관리자이다.  
+컴포넌트는 **추가되는 순서대로** 왼쪽에서 오른쪽, 위에서 아래 방향으로 배치된다.  
+컴포넌트를 추가하는 방법은 다른 배치관리자와 동일하게 `add()` 메소드를 사용한다.
+
+```java
+container.setLayout(new GridLayout(4, 3));
+container.add(new JButton("1"));
+container.add(new JButton("2"));
+```
+
+`GridLayout`에서는 모든 셀의 크기가 동일하며, 각 컴포넌트도 셀의 크기에 맞게 자동으로 조정된다.
+
+### 2. GridLayout의 생성자와 속성
+
+`GridLayout`은 행과 열의 개수, 컴포넌트 사이의 간격을 지정할 수 있는 여러 생성자를 제공한다.
+
+```java
+GridLayout()
+GridLayout(int rows, int cols)
+GridLayout(int rows, int cols, int hGap, int vGap)
+```
+
+각 매개변수의 의미는 다음과 같다.
+
+- `rows` : 그리드의 행(Row) 수 (기본값 1)
+- `cols` : 그리드의 열(Column) 수 (기본값 1)
+- `hGap` : 컴포넌트 사이의 가로 간격 (기본값 0픽셀)
+- `vGap` : 컴포넌트 사이의 세로 간격 (기본값 0픽셀)
+
+생성자를 사용하는 예시는 다음과 같다.
+
+```java
+new GridLayout();
+new GridLayout(4, 3, 5, 5);
+```
+
+셀의 개수보다 많은 컴포넌트를 추가하면 `GridLayout`은 모든 컴포넌트를 배치할 수 있도록 행이나 열의 개수를 자동으로 조정한다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [GridLayoutEx.java](./.src/GridLayoutEx.java)
