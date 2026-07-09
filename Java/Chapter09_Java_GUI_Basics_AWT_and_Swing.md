@@ -564,3 +564,85 @@ new GridLayout(4, 3, 5, 5);
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [GridLayoutEx.java](./.src/GridLayoutEx.java)
+
+---
+
+# 📅 2026-07-09 (배치관리자 없는 컨테이너)
+
+## ✅ 배운 내용
+
+### 1. 배치관리자 없는 컨테이너가 필요한 경우
+
+자바 GUI에서는 기본적으로 모든 컨테이너가 **배치관리자(Layout Manager)** 를 가지고 있으며, 배치관리자가 컴포넌트의 위치와 크기를 자동으로 결정한다.  
+배치관리자는 컴포넌트를 절대 위치가 아닌 상대적인 위치에 배치하기 때문에, 컨테이너의 크기가 변경되면 컴포넌트의 위치와 크기도 함께 조정된다.  
+하지만 다음과 같은 경우에는 배치관리자를 사용하지 않는 것이 더 적합하다.
+
+- 컴포넌트의 위치와 크기를 개발자가 직접 지정하고 싶은 경우
+- 게임처럼 시간이나 마우스·키보드 입력에 따라 컴포넌트의 위치가 계속 변경되는 경우
+- 여러 컴포넌트를 서로 겹쳐 배치해야 하는 경우
+
+이러한 경우에는 배치관리자를 제거하고 직접 컴포넌트의 위치와 크기를 설정한다.
+
+### 2. 컨테이너의 배치관리자 제거
+
+배치관리자를 제거하려면 `Container` 클래스의 `setLayout()` 메소드를 사용한다.
+
+```java
+container.setLayout(null);
+```
+
+예를 들어 `JPanel`의 배치관리자를 제거하는 방법은 다음과 같다.
+
+```java
+JPanel p = new JPanel();
+p.setLayout(null);
+```
+
+배치관리자가 제거되면 컴포넌트의 위치와 크기를 자동으로 설정하지 않는다.  
+따라서 컴포넌트를 단순히 추가만 하면 크기가 **0 × 0**으로 설정되어 화면에 보이지 않는다.
+
+```java
+JPanel p = new JPanel();
+p.setLayout(null);
+
+p.add(new JButton("Click"));
+p.add(new JButton("Me!"));
+```
+
+위 코드는 버튼을 추가했지만 크기와 위치를 지정하지 않았기 때문에 화면에 표시되지 않는다.
+
+### 3. 컴포넌트의 절대 위치와 절대 크기 설정
+
+배치관리자가 없는 컨테이너에서는 개발자가 직접 컴포넌트의 위치와 크기를 설정해야 한다.  
+이를 위해 `java.awt.Component` 클래스에서 제공하는 다음 메소드를 사용한다.
+
+| 메소드                                           | 설명                      |
+| ------------------------------------------------ | ------------------------- |
+| `setSize(int width, int height)`                 | 컴포넌트의 크기 설정      |
+| `setLocation(int x, int y)`                      | 컴포넌트의 위치 설정      |
+| `setBounds(int x, int y, int width, int height)` | 위치와 크기를 동시에 설정 |
+
+다음은 버튼을 `(50, 50)` 위치에 `100 × 40` 크기로 배치하는 예시이다.
+
+```java
+JPanel p = new JPanel();
+p.setLayout(null);
+
+JButton clickButton = new JButton("Click");
+clickButton.setSize(100, 40);
+clickButton.setLocation(50, 50);
+
+p.add(clickButton);
+```
+
+또는 `setBounds()`를 사용하면 위치와 크기를 한 번에 지정할 수 있다.
+
+```java
+clickButton.setBounds(50, 50, 100, 40);
+```
+
+배치관리자를 사용하지 않으면 컴포넌트의 위치를 자유롭게 지정할 수 있으며, 여러 컴포넌트를 서로 겹쳐 배치하는 것도 가능하다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [NullContainerEx.java](./.src/NullContainerEx.java)
