@@ -1,7 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
-    
+        {
+            "type": "java",
+            "name": "MultiplePanelEx",
+            "request": "launch",
+            "mainClass": "MultiplePanelEx",
+            "projectName": "TIL_e96e4b87"
+        },
         {
             "type": "java",
             "name": "Current File",
