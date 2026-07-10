@@ -646,3 +646,17 @@ clickButton.setBounds(50, 50, 100, 40);
 ### 💻 실습 코드
 
 - 실습 파일 바로가기: [NullContainerEx.java](./.src/NullContainerEx.java)
+
+---
+
+# 📅 2026-07-10 (여러 컴포넌트를 가진 복잡한 GUI 만들기)
+
+## ✅ 배운 내용
+
+복잡한 GUI를 만들 때 하나의 배치관리자만 사용하면 컴포넌트의 개수와 배치 방식에 한계가 있다.  
+예를 들어 `BorderLayout`은 5개의 영역만 사용할 수 있고, `GridLayout`은 격자 형태로만 컴포넌트를 배치할 수 있다.  
+많은 컴포넌트를 배치하면서 다양한 형태의 GUI를 만들기 위해서는 **여러 개의 패널(JPanel)과 여러 배치관리자를 함께 사용**하면 된다.
+
+### 💻 실습 코드
+
+- 실습 파일 바로가기: [MultiplePanelEx.java](./.src/MultiplePanelEx.java)
