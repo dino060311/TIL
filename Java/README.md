@@ -19,6 +19,7 @@
 | **Ch.07** | 제네릭과 컬렉션                      |  ✅  | [상세 보기](./Chapter07_Generics_and_Collections.md)      |
 | **Ch.08** | 입출력 스트림과 파일 입출력          |  ✅  | [상세 보기](./Chapter08_Input_Streams_and_File_IO.md)     |
 | **Ch.09** | 자바 GUI 기초, AWT와 스윙            |  ✅  | [상세 보기](./Chapter09_Java_GUI_Basics_AWT_and_Swing.md) |
+| **Ch.10** | 자바의 이벤트 처리                   |  📚  | [상세 보기](./Chapter10_Java_Event_Handling.md)           |
 
 ---
 
